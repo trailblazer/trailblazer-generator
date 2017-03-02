@@ -1,8 +1,6 @@
 # Trailblazer::Generator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/trailblazer/generator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Generate trailblazer files, this is just a prototype, soon will be a WIP, check back soon ;)
 
 ## Installation
 
@@ -22,7 +20,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+It includes a binary called `trailblazer`
+
+run trailblazer and check usage
+
+```bash
+○ trailblazer
+Commands:
+  trailblazer generate COMMANDS  # Generates trailblazer file
+  trailblazer help [COMMAND]     # Describe available commands or one specific command
+```
 
 ## Development
 
@@ -32,10 +39,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/trailblazer-generator.
+Bug reports and pull requests are welcome on GitHub at https://github.com/trailblazer/trailblazer-generator.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
