@@ -1,0 +1,19 @@
+class <%= model %>::Create < Trailblazer::Operation
+<%- if options[:present] %>
+  class Present < Trailblazer::Operation
+    step Model( Row, :new )
+    step :decorate!
+    step Contract::Build( constant: Form::Create )
+
+    def decorate!(options, model:, **)
+      options["model"] = Twin::Create.new(model)
+    end
+  end
+<% end %>
+
+<%- if options[:present] %>
+  step Nested( Present )
+<% end %>
+  step Contract::Validate()
+  step Contract::Persist()
+end

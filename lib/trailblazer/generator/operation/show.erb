@@ -1,6 +1,0 @@
-class <%= model %> < Trailblazer::Operation
-<%- if options[:steps] %>
-  step     Model( Song, :new )
-  step     :assign_current_user!
-<% end %>
-end

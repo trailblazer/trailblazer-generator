@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "cells"
   spec.add_dependency "cells-erb"
+  spec.add_dependency "trailblazer"
   spec.add_dependency "thor"
 
   spec.add_development_dependency "bundler", "~> 1.14"
@@ -30,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-minitest"
+  spec.add_development_dependency "fakefs"
 end

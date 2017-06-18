@@ -3,15 +3,25 @@ require 'thor'
 module Trailblazer
   module Generator
     class Generate < Thor
-      desc "operation NAME", "Generates trailblazer file"
+      desc "operation NAME", "Generates operation file"
       long_desc <<-OPERATION_LONG_DESC
 
       `generate operation` generate operation file
 
       OPERATION_LONG_DESC
-      option :steps, type: :boolean
+      option :present, type: :boolean
       def operation(name)
-        Trailblazer::Generator::Operation.new(name, options)
+        Trailblazer::Generator::Builder::Operation.(name: name, options: options)
+      end
+
+      desc "cell NAME", "Generates cell file"
+      long_desc <<-CELL_LONG_DESC
+
+      `generate cell` generate cell file
+
+      CELL_LONG_DESC
+      def cell(name)
+        Trailblazer::Generator::Builder::Cell.(name: name, options: options)
       end
     end
 
