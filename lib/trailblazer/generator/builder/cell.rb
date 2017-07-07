@@ -1,5 +1,8 @@
 class Trailblazer::Generator::Builder::Cell < Trailblazer::Operation
   class Cell < Trailblazer::Generator::Cell
+    def action
+      options[:action].capitalize
+    end
   end
 
   step Trailblazer::Generator::Macro::ValidateClassName()
@@ -11,6 +14,7 @@ class Trailblazer::Generator::Builder::Cell < Trailblazer::Operation
     options['content'] = Cell.(params[:name], params[:options])
 
     name = Trailblazer::Generator::Inflector.underscore(params[:name])
-    options['path'] = File.join('app', 'concepts', name, 'cell', 'new.rb')
+    action = Trailblazer::Generator::Inflector.underscore(params[:options][:action])
+    options['path'] = File.join('app', 'concepts', name, 'cell', action + '.rb')
   end
 end
