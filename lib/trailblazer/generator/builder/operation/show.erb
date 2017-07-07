@@ -1,14 +1,14 @@
-class <%= model %>::Create < Trailblazer::Operation
+class <%= model %>::<%= action %> < Trailblazer::Operation
+<%= "\n"%>
 <%- if options[:present] %>
   class Present < Trailblazer::Operation
-    step Model( Row, :new )
-    step :decorate!
+    step Model( <%= model %>, :<%= step_action %> )
     step Contract::Build( constant: Form::Create )
-
-    def decorate!(options, model:, **)
-      options["model"] = Twin::Create.new(model)
-    end
   end
+<%= "\n"%>
+<%- else %>
+  step Model( <%= model %>, :<%= step_action %> )
+  step Contract::Build( constant: Form::Create )
 <% end %>
 
 <%- if options[:present] %>
@@ -16,4 +16,5 @@ class <%= model %>::Create < Trailblazer::Operation
 <% end %>
   step Contract::Validate()
   step Contract::Persist()
+
 end
