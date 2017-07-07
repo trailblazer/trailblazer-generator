@@ -1,5 +1,5 @@
 module Trailblazer::Generator::Macro
-  REGEXP = /^[A-Z][A-Za-z]{1,}(::[A-Z][A-Za-z]{1,})?/
+  REGEXP = /^[A-Z][A-Za-z]{1,}$/ # example: Trailblazer or TrailBlazer
   # Plase, keep error codes sorted alphabetically
   ERROR_INVALID_CLASS_NAME = 1
 
@@ -8,7 +8,7 @@ module Trailblazer::Generator::Macro
       if options["params"][:name].match REGEXP
         true
       else
-        options['failure_message'] = 'You provided an invalid class name'
+        options['failure_message'] = 'You provided an invalid class name. Trailblazer or TrailBlazer is expected'
         options['error_code'] = ERROR_INVALID_CLASS_NAME
         false
       end
