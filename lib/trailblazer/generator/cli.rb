@@ -3,6 +3,8 @@ require 'thor'
 module Trailblazer
   module Generator
     class Generate < Thor
+      class_option :action, :type => :string, :required => true
+
       desc "operation NAME", "Generates operation file"
       long_desc <<-OPERATION_LONG_DESC
 
