@@ -1,5 +1,12 @@
 require 'test_helper'
 
+
+ClassName = Struct.new(:name)
+
+class ClassName::Test < Trailblazer::Operation
+  step Trailblazer::Generator::Macro::ValidateClassName()
+end
+
 class Trailblazer::Generator::ClassNameTest < Minitest::Test
 
   def test_invalid_name
