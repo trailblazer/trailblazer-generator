@@ -1,0 +1,10 @@
+class <%= name %>::<%= action_class %> < Trailblazer::Operation
+  class Present < Trailblazer::Operation
+    step Model(<%= name %>, :find_by)
+    step Contract::Build( constant: <%= name %>::Contract::Update )
+  end
+
+  step Nested( Present )
+  step Contract::Validate( key: :<%= underscore_name %> )
+  step Contract::Persist( )
+end

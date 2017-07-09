@@ -1,4 +1,7 @@
 module <%= name %>::Cell
   class <%= action_class %> < Trailblazer::Cell
+    def total
+      return "No element" if model.size == 0
+    end
   end
 end

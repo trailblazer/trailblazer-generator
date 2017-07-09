@@ -1,0 +1,7 @@
+class <%= name %>::<%= action_class %> < Trailblazer::Operation
+  step :model!
+
+  def model!(options, *)
+    options["model"] = ::<%= name %>.all
+  end
+end

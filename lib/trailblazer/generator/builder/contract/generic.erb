@@ -1,0 +1,7 @@
+module <%= name %>::Contract
+  class <%= action_class %> < Reform::Form
+<% properties.each do |property| -%>
+    property :<%= property %>
+<%- end %>
+  end
+end
