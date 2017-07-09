@@ -1,8 +1,5 @@
 class Trailblazer::Generator::Builder::Cell < Trailblazer::Operation
   class Cell < Trailblazer::Generator::Cell
-    def action
-      options[:action].capitalize
-    end
   end
 
   step Trailblazer::Generator::Macro::ValidateClassName()

@@ -1,13 +1,5 @@
 class Trailblazer::Generator::Builder::Operation < Trailblazer::Operation
   class Cell < Trailblazer::Generator::Cell
-    def action
-      options[:action].capitalize
-    end
-
-    #FIX ME!
-    def step_action
-      (action == "Create" and options[:present]) ? "new" : "# add_action"
-    end
   end
 
   step Trailblazer::Generator::Macro::ValidateClassName()
