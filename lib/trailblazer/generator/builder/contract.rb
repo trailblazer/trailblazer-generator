@@ -1,8 +1,8 @@
 class Trailblazer::Generator::Builder::Contract < Trailblazer::Operation
   class Cell < Trailblazer::Generator::Cell
     def properties
-      return [] unless options.key?(:properties)
-      options[:properties]
+      return [] unless options.key?("properties")
+      options["properties"]
     end
   end
 
