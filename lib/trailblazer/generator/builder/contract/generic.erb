@@ -1,7 +1,7 @@
 module <%= name %>::Contract
   class <%= action_class %> < Reform::Form
 <% properties.each do |property| -%>
-    property :<%= property %>
+    property :<%= property + "\n" %>
 <%- end %>
   end
 end
