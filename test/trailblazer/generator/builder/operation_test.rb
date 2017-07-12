@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'fakefs/safe'
 
-class Trailblazer::Generator::BuilderCellTest < Minitest::Test
+class Trailblazer::Generator::Builder::OperationTest < Minitest::Test
   def test_build_operation
     str_op_create = <<~EOF
       class Blog::Create < Trailblazer::Operation

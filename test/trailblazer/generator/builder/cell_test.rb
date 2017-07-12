@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'fakefs/safe'
 
-class Trailblazer::Generator::BuilderCellTest < Minitest::Test
+class Trailblazer::Generator::Builder::CellTest < Minitest::Test
 
   def test_build_cell_with_defautl_erb_view
     str_cell_new = <<~EOF
@@ -58,7 +58,6 @@ class Trailblazer::Generator::BuilderCellTest < Minitest::Test
         <p>Find me in app/concepts/#{model_underscore}/view/#{action}.erb</p>
       EOF
     end
-
 
     Trailblazer::Generator::Builder::Cell.(name: "BlogPost", options: {"actions" => "new,edit,show,index,custom"})
 

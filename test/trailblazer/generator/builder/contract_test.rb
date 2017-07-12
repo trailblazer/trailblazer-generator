@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'fakefs/safe'
 
-class Trailblazer::Generator::BuilderContractTest < Minitest::Test
+class Trailblazer::Generator::Builder::ContractTest < Minitest::Test
   def test_build_operation_no_properties
     str_contract_new = <<~EOF
       module BlogPost::Contract
