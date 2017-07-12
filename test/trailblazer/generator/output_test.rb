@@ -7,6 +7,7 @@ class Trailblazer::Generator::OutputTest < Minitest::Test
       class Thing::Create < Trailblazer::Operation
       end
     EOF
+
     FakeFS do
       Trailblazer::Generator::Output.new(path: 'app/concepts/operation/create.rb', content: str).save
 
