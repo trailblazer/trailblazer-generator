@@ -8,6 +8,7 @@ module Trailblazer
 
       CONTRACT_LONG_DESC
       options actions: :required
+      options properties: :array
       def contract(name)
         Trailblazer::Generator::Builder::Contract.(name: name, options: options)
       end
