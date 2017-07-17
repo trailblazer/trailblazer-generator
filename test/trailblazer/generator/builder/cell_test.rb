@@ -80,26 +80,25 @@ class Trailblazer::Generator::Builder::CellTest < Minitest::Test
                 ]
 
     result = Trailblazer::Generator::Builder::Cell.(name: "BlogPost", options: {"actions" => "new,edit,show,index,custom", "debug" => true})
-
     # cells files
-    cell_files.zip(result["params"]["cell_result"]["files_content"]).each do |cell_file, cell_file_result|
+    cell_files.zip(result["cell_result"]["files_content"]).each do |cell_file, cell_file_result|
       assert_equal cell_file, cell_file_result
     end
 
     # cells paths
-    cell_paths.zip(result["params"]["cell_result"]["files_path"]).each do |cell_path, cell_path_result|
+    cell_paths.zip(result["cell_result"]["files_path"]).each do |cell_path, cell_path_result|
       assert_equal cell_path, cell_path_result
     end
 
     # view files
     actions = result["params"][:options]["actions"].split(",")
-    view_files_result = result["params"]["view_result"]["files_content"]
+    view_files_result = result["view_result"]["files_content"]
     actions.zip(view_files_result).each do |action, view_file_result|
       assert_equal view_file(action), view_file_result
     end
 
     # view paths
-    view_paths.zip(result["params"]["view_result"]["files_path"]).each do |view_path, view_path_result|
+    view_paths.zip(result["view_result"]["files_path"]).each do |view_path, view_path_result|
       assert_equal view_path, view_path_result
     end
 
