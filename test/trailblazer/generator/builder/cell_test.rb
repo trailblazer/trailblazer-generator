@@ -52,30 +52,55 @@ class Trailblazer::Generator::Builder::CellTest < Minitest::Test
       end
     EOF
 
-    def view_file(model, model_underscore, action)
+    cell_files = [str_cell_new, str_cell_edit, str_cell_show, str_cell_index, str_cell_item, str_cell_custom]
+
+    cell_paths = [
+                    "app/concepts/blog_post/cell/new.rb",
+                    "app/concepts/blog_post/cell/edit.rb",
+                    "app/concepts/blog_post/cell/show.rb",
+                    "app/concepts/blog_post/cell/index.rb",
+                    "app/concepts/blog_post/cell/item.rb",
+                    "app/concepts/blog_post/cell/custom.rb"
+                  ]
+
+    def view_file(action)
       <<~EOF
-        <h1>#{model}##{action}</h1>
-        <p>Find me in app/concepts/#{model_underscore}/view/#{action}.erb</p>
+        <h1>BlogPost##{action}</h1>
+        <p>Find me in app/concepts/blog_post/view/#{action}.erb</p>
       EOF
     end
 
-    Trailblazer::Generator::Builder::Cell.(name: "BlogPost", options: {"actions" => "new,edit,show,index,custom"})
+    view_paths = [
+                  "app/concepts/blog_post/view/new.erb",
+                  "app/concepts/blog_post/view/edit.erb",
+                  "app/concepts/blog_post/view/show.erb",
+                  "app/concepts/blog_post/view/index.erb",
+                  "app/concepts/blog_post/view/custom.erb",
+                  "app/concepts/blog_post/view/item.erb"
+                ]
 
+    result = Trailblazer::Generator::Builder::Cell.(name: "BlogPost", options: {"actions" => "new,edit,show,index,custom", "debug" => true})
     # cells files
-    assert_equal str_cell_new, File.read('app/concepts/blog_post/cell/new.rb')
-    assert_equal str_cell_edit, File.read('app/concepts/blog_post/cell/edit.rb')
-    assert_equal str_cell_item, File.read('app/concepts/blog_post/cell/item.rb')
-    assert_equal str_cell_index, File.read('app/concepts/blog_post/cell/index.rb')
-    assert_equal str_cell_show, File.read('app/concepts/blog_post/cell/show.rb')
-    assert_equal str_cell_custom, File.read('app/concepts/blog_post/cell/custom.rb')
+    cell_files.zip(result["cell_result"]["files_content"]).each do |cell_file, cell_file_result|
+      assert_equal cell_file, cell_file_result
+    end
+
+    # cells paths
+    cell_paths.zip(result["cell_result"]["files_path"]).each do |cell_path, cell_path_result|
+      assert_equal cell_path, cell_path_result
+    end
 
     # view files
-    assert_equal view_file("BlogPost", "blog_post", "new"), File.read('app/concepts/blog_post/view/new.erb')
-    assert_equal view_file("BlogPost", "blog_post", "edit"), File.read('app/concepts/blog_post/view/edit.erb')
-    assert_equal view_file("BlogPost", "blog_post", "index"), File.read('app/concepts/blog_post/view/index.erb')
-    assert_equal view_file("BlogPost", "blog_post", "item"), File.read('app/concepts/blog_post/view/item.erb')
-    assert_equal view_file("BlogPost", "blog_post", "show"), File.read('app/concepts/blog_post/view/show.erb')
-    assert_equal view_file("BlogPost", "blog_post", "custom"), File.read('app/concepts/blog_post/view/custom.erb')
+    actions = result["params"][:options]["actions"].split(",")
+    view_files_result = result["view_result"]["files_content"]
+    actions.zip(view_files_result).each do |action, view_file_result|
+      assert_equal view_file(action), view_file_result
+    end
+
+    # view paths
+    view_paths.zip(result["view_result"]["files_path"]).each do |view_path, view_path_result|
+      assert_equal view_path, view_path_result
+    end
 
   end
 
