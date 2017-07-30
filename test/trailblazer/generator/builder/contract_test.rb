@@ -18,7 +18,7 @@ class Trailblazer::Generator::Builder::ContractTest < Minitest::Test
     EOF
 
 
-    Trailblazer::Generator::Builder::Contract.(name: "BlogPost", options: {"actions" => "new,edit", "properties" => []})
+    Trailblazer::Generator::Builder::Contract.(name: "BlogPost", options: {"actions" => "new,edit", "properties" => []}, command: 'contract')
 
     assert_equal str_contract_new, File.read('app/concepts/blog_post/contract/new.rb')
     assert_equal str_contract_edit, File.read('app/concepts/blog_post/contract/edit.rb')
@@ -36,7 +36,7 @@ class Trailblazer::Generator::Builder::ContractTest < Minitest::Test
     EOF
 
 
-    Trailblazer::Generator::Builder::Contract.(name: "BlogPost", options: {"actions" => "edit", "properties" => ["title", "subtitle", "body"]})
+    Trailblazer::Generator::Builder::Contract.(name: "BlogPost", options: {"actions" => "edit", "properties" => ["title", "subtitle", "body"]}, command: 'contract')
 
     assert_equal str, File.read('app/concepts/blog_post/contract/edit.rb')
   end

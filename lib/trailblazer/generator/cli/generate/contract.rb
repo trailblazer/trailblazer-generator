@@ -10,7 +10,7 @@ module Trailblazer
       options actions: :required
       options properties: :array
       def contract(name)
-        Trailblazer::Generator::Builder::Contract.(name: name, options: options)
+        Trailblazer::Generator::Builder::Contract.(name: name, options: options, command: 'contract')
       end
     end
   end

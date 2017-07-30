@@ -22,7 +22,7 @@ module Trailblazer
       OPERATION_LONG_DESC
       options actions: :required
       def operation(name)
-        Trailblazer::Generator::Builder::Operation.(name: name, options: options)
+        Trailblazer::Generator::Builder::Operation.(name: name, options: options, command: 'operation')
       end
     end
   end

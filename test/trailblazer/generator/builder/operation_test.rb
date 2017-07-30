@@ -56,7 +56,7 @@ class Trailblazer::Generator::Builder::OperationTest < Minitest::Test
       end
     EOF
 
-    Trailblazer::Generator::Builder::Operation.(name: "Blog", options: {"actions" => "create,update,index,show,delete"})
+    Trailblazer::Generator::Builder::Operation.(name: "Blog", options: {"actions" => "create,update,index,show,delete"}, command: 'operation')
 
     assert_equal str_op_create, File.read('app/concepts/blog/operation/create.rb')
     assert_equal str_op_update, File.read('app/concepts/blog/operation/update.rb')
@@ -74,7 +74,7 @@ class Trailblazer::Generator::Builder::OperationTest < Minitest::Test
     EOF
 
 
-    Trailblazer::Generator::Builder::Operation.(name: "BlogPost", options: {present: false, "actions" => "custom"})
+    Trailblazer::Generator::Builder::Operation.(name: "BlogPost", options: {present: false, "actions" => "custom"}, command: 'operation')
 
     assert_equal str, File.read('app/concepts/blog_post/operation/custom.rb')
   end
@@ -98,7 +98,7 @@ class Trailblazer::Generator::Builder::OperationTest < Minitest::Test
     EOF
 
 
-    Trailblazer::Generator::Builder::Operation.(name: "BlogPost", options: {present: true, "actions" => "custom"})
+    Trailblazer::Generator::Builder::Operation.(name: "BlogPost", options: {present: true, "actions" => "custom"}, command: 'operation')
 
     assert_equal str, File.read('app/concepts/blog_post/operation/custom.rb')
   end
