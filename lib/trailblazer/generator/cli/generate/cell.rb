@@ -17,7 +17,7 @@ module Trailblazer
         * default => erb
 
       Examples:
-        `generate cell BlogPost --actions index,foo --template_engine slim`
+        `generate cell BlogPost --actions index,foo --template-engine slim`
 
         Will generate an index, item and foo cell files and the corrisponding template using slim
 
