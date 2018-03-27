@@ -2,7 +2,7 @@ require 'ostruct'
 
 module Trailblazer
   module Generator
-    class Cell < Cell::ViewModel
+    class Cell < ::Cell::ViewModel
       module ClassMethods
         def build_model(name:, action:)
           OpenStruct.new(name: name, action: action)
