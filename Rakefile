@@ -1,10 +1,30 @@
 require "bundler/gem_tasks"
-require "rake/testtask"
+require "rspec/core/rake_task"
+require "rubocop/rake_task"
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.libs << "lib"
-  t.test_files = FileList['test/**/*_test.rb']
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = "--format documentation --format RspecJunitFormatter --out test-reports/spec.xml"
+end
+RSpec::Core::RakeTask.new(:tests) do |t|
+  t.rspec_opts = "--format progress --format documentation"
+end
+RSpec::Core::RakeTask.new(:spec_report) do |t|
+  t.rspec_opts = "--format html --out reports/rspec_results.html"
 end
 
-task :default => :test
+RuboCop::RakeTask.new(:rubocop)
+
+desc "Remove temporary files"
+task :clean do
+  %x{rm -rf *.gem doc pkg coverage test-reports}
+  %x{rm -f `find . -name "*.rbc"`}
+end
+
+desc "Build the gem"
+task :gem do
+  %x{gem build trailblazer-generator.gemspec}
+end
+
+desc "Running Tests"
+#task default: %i[clean spec rubocop]
+task default: %i[clean tests]

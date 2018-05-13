@@ -1,0 +1,5 @@
+module <%= concept %>::<%= type.capitalize %>
+  class <%= name %> < Trailblazer::Operation
+    step Model(<%= concept %>, :find_by)
+  end
+end

@@ -1,16 +1,12 @@
-require 'cells'
-require 'cells-erb'
-require 'trailblazer'
+require "hanami/cli"
 require "trailblazer/generator/version"
-require "trailblazer/generator/cli"
-require "trailblazer/generator/cell"
-require "trailblazer/generator/inflector"
-require "trailblazer/generator/macro"
-require "trailblazer/generator/output"
-require "trailblazer/generator/builder"
+require "trailblazer/generator/utils"
+require "trailblazer/generator/context"
+require "trailblazer/generator/commands"
+require "trailblazer/generator/concept"
 
 module Trailblazer
-  module Generator
-    # Your code goes here...
+  # Trailblazer Generator
+  class Generator
   end
 end

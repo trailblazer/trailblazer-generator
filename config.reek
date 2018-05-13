@@ -1,0 +1,13 @@
+---
+IrresponsibleModule:
+  enabled: false
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  max_statements: 7
+UtilityFunction:
+  exclude:
+  - Trailblazer::Gen::Generators::Concept#initialize
+  - Trailblazer::Gen::Utils::Menu#get_concept_choices
+  - Trailblazer::Gen::Utils::Validate#concept

@@ -1,67 +1,45 @@
-# Trailblazer::Generator
+# Trailblazer Generator
+all basic commands have --help
 
-Generate trailblazer files, this is just a prototype, soon will be a WIP, check back soon ;)
+## Single file generation
+Concept name and class name are required and validated before going ahead with the generation.
 
-## Installation
+Examples:
+- `bin/trailblazer g operation post create` -> will return an class_name error
+- `bin/trailblazer g operation Post Create` -> will create the file `app/concepts/post/operation/create.rb` using the `create` template
+- `bin/trailblazer g operation Post YeahNah` -> will create the file `app/concepts/post/operation/yeah_nah.rb` using the `generic` template and showing a Notice message saying that template yeah_nah template is not found and a generic one is used
 
-Add this line to your application's Gemfile:
+## Multi files generation
+Concept name is required and default arrays are used to generate the files
 
-```ruby
-gem 'trailblazer-generator'
-```
+Example:
+- `bin/trailblazer g operation Post` -> will generate `index.rb`, `create.rb`, `show.rb` and `update.rb` in `app/concepts/post/operation`
 
-And then execute:
+## Options
+###Use of layout:
+option --layout allows to change the concept directory layout
 
-    $ bundle
+Examples:
+- `bin/trailblazer g operation Post Create --layout="singular"` -> will create the file `app/concepts/post/operation/create.rb` (which is the default)
+- `bin/trailblazer g operation Post Create --layout="plural"` -> will create the file `app/concepts/post/operations/create.rb`
 
-Or install it yourself as:
+###Use of action:
+option --action allows to use a specific template
 
-    $ gem install trailblazer-generator
+Examples:
+`bin/trailblazer g operation Post Create --actiom=index` -> will create the file `app/concepts/post/operation/create.rb` user the `index` template
 
-## Usage
+If template is not found a Notice message saying that template yeah_nah template is not found and a generic one is used
 
-It includes a binary called `trailblazer`
+###Use of view (only for commands cell, cells and concept):
+option --view allows to generate the view with a specific template
 
-run trailblazer and check usage
+Examples:
+`bin/trailblazer g cell Post Create --view=slim` -> will create 2 files `app/concepts/post/cell/create.rb` and `app/concepts/post/view/create.slim`
 
-```bash
-○ trailblazer
-Commands:
-  trailblazer generate COMMANDS  # Generates trailblazer file
-  trailblazer help [COMMAND]     # Describe available commands or one specific command
-```
+###TODO: Use of other options
 
-## Examples
+## NOTE
+This is a work in progress.
 
-Generating some operations:
-
-```shell
-trailblazer generate operation BlogPost --actions index,create
-```
-
-Generating some cells:
-
-```shell
-trailblazer generate cell BlogPost --actions index,edit
-```
-
-As bonus, we get some views:
-* index.erb
-* item.erb (to be used as a item render on index collection)
-* edit.erb
-
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/trailblazer/trailblazer-generator.
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The main idea we want with generator in the end, is that it also generators what's inside your files for the most basic aspects, think of validations, etc.

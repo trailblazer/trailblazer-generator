@@ -1,0 +1,9 @@
+module <%= concept %>::<%= type.capitalize %>
+  class <%= name %> < Trailblazer::Operation
+    step :model!
+
+    def model!(options, *)
+      options["model"] = ::<%= concept %>.all
+    end
+  end
+end

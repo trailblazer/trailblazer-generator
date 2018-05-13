@@ -1,8 +1,0 @@
-class <%= name %>::<%= action_class %> < Trailblazer::Operation
-  step Model(<%= name %>, :find_by)
-  step :delete!
-
-  def delete!(options, model:, **)
-    model.destroy
-  end
-end

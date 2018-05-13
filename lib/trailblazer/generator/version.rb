@@ -1,5 +1,5 @@
 module Trailblazer
-  module Generator
-    VERSION = "0.2.0"
+  class Generator
+    VERSION = "0.3.0.pre".freeze
   end
 end

@@ -1,0 +1,12 @@
+module <%= concept %>::<%= type.capitalize %>
+  class <%= name %> < Trailblazer::Operation
+    class Present < Trailblazer::Operation
+      step Model(<%= concept %>, :new)
+      step Contract::Build(constant: <%= concept %>::Contract::Create)
+    end
+
+    step Nested(Present)
+    step Contract::Validate()
+    step Contract::Persist()
+  end
+end

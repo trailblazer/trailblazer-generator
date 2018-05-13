@@ -1,0 +1,10 @@
+module <%= concept %>::<%= type.capitalize %>
+  class <%= name %> < Trailblazer::Operation
+    step Model(<%= concept %>, :find_by)
+    step :delete!
+
+    def delete!(options, model:, **)
+      model.destroy
+    end
+  end
+end
