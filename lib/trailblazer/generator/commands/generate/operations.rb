@@ -8,7 +8,10 @@ module Trailblazer
         # Generate Operation Command
         class Operations < Base
           desc "Generate default operations: #{DEFAULT_OPERATIONS}"
-          example []
+          example [
+            "trb generate operations Blog",
+            "trb generate operations Blog --layout=plural"
+          ]
 
           # Required Arguments
           argument :concept, required: true, desc: ARGUMENT_CONCEPT

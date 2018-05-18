@@ -15,9 +15,9 @@ module Trailblazer
             super
           end
 
-          def run_generator(op, type, actions = false)
+          def run_generator(op, type, templates = false)
             @say.start(type)
-            @generator.run op, type, actions
+            @generator.run op, type, templates
             @say.end(type)
           end
 

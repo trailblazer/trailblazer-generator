@@ -4,7 +4,7 @@ require "pathname"
 RSpec.describe Trailblazer::Generator::Utils::Files do
   let(:context) do
     Trailblazer::Generator::Context.new(
-      action: "new",
+      template: "new",
       path: false,
       concept: "Blog",
       layout: "singular",
