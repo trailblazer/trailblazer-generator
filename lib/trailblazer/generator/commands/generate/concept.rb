@@ -20,10 +20,10 @@ module Trailblazer
 
           # Optional Arguments
           option :view, desc: OPTION_VIEW
-          option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: "Concepts directory layout"
-          option :json, desc: OPTION_JSON 
-          option :stubs, desc: "Custom stub path"
-          option :path, desc: "Overwrite the destination path manually"
+          option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: OPTION_LAYOUT
+          option :json, desc: OPTION_JSON
+          option :stubs, desc: OPTION_STUBS
+          option :path, desc: OPTION_PATH
 
           # Apply context and call generator
           def call(concept:, **options)

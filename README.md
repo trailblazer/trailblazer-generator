@@ -16,14 +16,14 @@ Example:
 - `bin/trailblazer g operation Post` -> will generate `index.rb`, `create.rb`, `show.rb` and `update.rb` in `app/concepts/post/operation`
 
 ## Options
-###Use of layout:
+### Use of layout:
 option --layout allows to change the concept directory layout
 
 Examples:
 - `bin/trailblazer g operation Post Create --layout="singular"` -> will create the file `app/concepts/post/operation/create.rb` (which is the default)
 - `bin/trailblazer g operation Post Create --layout="plural"` -> will create the file `app/concepts/post/operations/create.rb`
 
-###Use of action:
+### Use of action:
 option --action allows to use a specific template
 
 Examples:
@@ -31,11 +31,17 @@ Examples:
 
 If template is not found a Notice message saying that template yeah_nah template is not found and a generic one is used
 
-###Use of view (only for commands cell, cells and concept):
+### Use of view (only for commands cell, cells and concept):
 option --view allows to generate the view with a specific template
 
 Examples:
 `bin/trailblazer g cell Post Create --view=slim` -> will create 2 files `app/concepts/post/cell/create.rb` and `app/concepts/post/view/create.slim`
+
+### Use of stubs
+option --stubs allows to set a custom folder where a template will searched for.
+Requirements:
+- `erb` file
+- expected stubs folder to have cell, contract, operation, view structure
 
 ###TODO: Use of other options
 

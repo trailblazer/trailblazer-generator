@@ -1,0 +1,8 @@
+module <%= concept %>::<%= type.capitalize %>
+  class <%= name %> < Trailblazer::Operation
+    step :custom_stuff
+
+    def custom_stuff(options, *)
+    end
+  end
+end

@@ -33,7 +33,7 @@ module Trailblazer
         actions.each do |action|
           context.action = action
           # this need to be capitalize because the action comes from the default array
-          context.name   = action.capitalize
+          context.name   = Utils::String.new(action).capitalize
           generate_single(context)
         end
       end

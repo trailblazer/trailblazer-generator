@@ -19,10 +19,11 @@ module Trailblazer
           json   = option(options, :json)
           json   = Parse.json(json) if json
           view   = option(options, :view)
+          stubs  = option(options, :stubs) || "../stubs"
 
           Context.new(
             concept: concept, action: action, path: path, type: type, name: name, json: json,
-            concept_path: concept_path, view: view
+            concept_path: concept_path, view: view, stubs: stubs
           )
         end
 

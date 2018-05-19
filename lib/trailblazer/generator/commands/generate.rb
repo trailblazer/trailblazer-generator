@@ -24,6 +24,7 @@ module Trailblazer
         OPTION_LAYOUT    = "Concepts directory layout".freeze
         OPTION_JSON      = "Json file for population of contract templates".freeze
         OPTION_VIEW      = "Template engine for view files".freeze
+        OPTION_STUBS     = "Custom stub path".freeze
 
         require "trailblazer/generator/commands/generate/base"
         require "trailblazer/generator/commands/generate/concept"

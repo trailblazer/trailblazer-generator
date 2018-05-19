@@ -21,8 +21,9 @@ module Trailblazer
           # Optional Arguments
           option :action, desc: OPTION_ACTION
           option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: OPTION_LAYOUT
-          option :json, desc: OPTION_JSON 
+          option :json, desc: OPTION_JSON
           option :path, desc: OPTION_PATH
+          option :stubs, desc: OPTION_STUBS
 
           # Apply context and call generator
           def call(concept:, **options)
