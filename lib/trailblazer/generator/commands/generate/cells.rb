@@ -27,7 +27,7 @@ module Trailblazer
           def call(concept:, **options)
             start_generator(concept, options)
             run_generator :multiple, :cell, Generate::DEFAULT_CELLS
-            run_generator :multiple, :view, Generate::DEFAULT_CELLS unless options[:view] == "none"
+            run_generator :multiple, :view, Generate::DEFAULT_CELLS if options[:view]
             close_generator
           end
         end

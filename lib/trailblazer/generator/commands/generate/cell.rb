@@ -10,7 +10,7 @@ module Trailblazer
           desc "Generate a Trailblazer Cell"
           example [
             "trb generate cell Blog Create",
-            "trb generate cell Blog Create --template=index",
+            "trb generate cell Blog Create --action=index",
             "trb generate cell Blog Create --layout=plural"
           ]
 
@@ -19,7 +19,7 @@ module Trailblazer
           argument :name, required: true, desc: ARGUMENT_NAME
 
           # Optional Arguments
-          option :template, desc: OPTION_TEMPLATE
+          option :action, desc: OPTION_ACTION
           option :view, desc: OPTION_VIEW
           option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: OPTION_LAYOUT
           option :json, desc: OPTION_JSON
@@ -30,7 +30,7 @@ module Trailblazer
           def call(concept:, **options)
             start_generator(concept, options)
             run_generator :single, :cell
-            run_generator :single, :view unless options[:view] == "none"
+            run_generator :single, :view if options[:view]
             close_generator
           end
         end

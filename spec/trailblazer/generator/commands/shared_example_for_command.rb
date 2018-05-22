@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.shared_examples "a single file generation command" do |type, check_view = false|
+RSpec.shared_examples "a single file generation command" do |type|
   let(:concept) { "SharedExample" }
   let(:template_array) { Trailblazer::Generator::Utils::Files::DEFAULT_MAP[type.to_sym] }
   let(:template) { template_array.sample }
@@ -8,12 +8,8 @@ RSpec.shared_examples "a single file generation command" do |type, check_view = 
   before do
     singular = "./app/concepts/shared_example/#{type}"
     plural = "./app/concepts/shared_example/#{type}s"
-    singular_view = "./app/concepts/shared_example/view"
-    plural_view = "./app/concepts/shared_example/view"
     FileUtils.remove_dir(singular) if Pathname(singular).exist?
     FileUtils.remove_dir(plural) if Pathname(plural).exist?
-    FileUtils.remove_dir(singular_view) if Pathname(singular_view).exist?
-    FileUtils.remove_dir(plural_view) if Pathname(plural_view).exist?
   end
 
   context "generates file from template" do
@@ -43,9 +39,9 @@ RSpec.shared_examples "a single file generation command" do |type, check_view = 
     end
   end
 
-  context "generates file from template using --template option" do
+  context "generates file from template using --action option" do
     let(:another_template) { template_array.sample }
-    let(:run_command) { `bin/trailblazer g #{type} #{concept} #{template.capitalize} --template=#{another_template}` }
+    let(:run_command) { `bin/trailblazer g #{type} #{concept} #{template.capitalize} --action=#{another_template}` }
     let(:file) { Pathname.new("./app/concepts/shared_example/#{type}/#{template}.rb") }
 
     it "and shows create messages" do
@@ -67,7 +63,7 @@ RSpec.shared_examples "a single file generation command" do |type, check_view = 
       expect(Pathname(file).exist?).to eq true
     end
   end
-  
+
   context "able to use --stubs to set a different template path" do
     let(:root_path) { File.join(File.dirname(__dir__), "../../stubs_test") }
     let(:run_command) { `bin/trailblazer g #{type} #{concept} WeirdOne --stubs=#{root_path}` }
@@ -79,20 +75,6 @@ RSpec.shared_examples "a single file generation command" do |type, check_view = 
       expect(run_command).to include file_path
       expect(File.read(file_path)).to include "def custom_stuff"
       expect(Pathname(file_path).exist?).to eq true
-    end
-  end
-  
-  if check_view
-    context "when passing --view option creates the view file" do
-      let(:run_command) { `bin/trailblazer g cell SharedExample New --view=slim` }
-      let(:file) { Pathname.new("./app/concepts/shared_example/view/new.slim") }
-
-      it "and shows create messages" do
-        expect(run_command).to include "Starting Generator for Trailblazer View"
-        expect(run_command).to include "Create"
-        expect(run_command).to include "app/concepts/shared_example/view/new.slim"
-        expect(Pathname(file).exist?).to eq true
-      end
     end
   end
 end
