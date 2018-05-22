@@ -28,7 +28,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {} }
       let(:default_options) do
         {
-          concept: nil, action: false, path: false, type: type_in_string, name: false, json: false,
+          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -44,7 +44,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:type_in_string) { Trailblazer::Generator::Utils::String.new("#{type}s") }
       let(:custom_options) do
         {
-          concept: nil, action: false, path: false, type: type_in_string, name: false, json: false,
+          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -59,7 +59,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:concept) { "BlogPost::Post" }
       let(:custom_options) do
         {
-          concept: concept_in_string, action: false, path: false, type: type_in_string, name: false, json: false,
+          concept: concept_in_string, template: false, path: false, type: type_in_string, name: false, json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -70,11 +70,11 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       end
     end
 
-    context "when passing an action and the name" do
-      let(:options) { {action: "new", name: "SomeName"} }
+    context "when passing an template and the name" do
+      let(:options) { {template: "new", name: "SomeName"} }
       let(:custom_options) do
         {
-          concept: nil, action: "new", path: false, type: type_in_string, name: "SomeName", json: false,
+          concept: nil, template: "new", path: false, type: type_in_string, name: "SomeName", json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -89,7 +89,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {name: "SomeName"} }
       let(:custom_options) do
         {
-          concept: nil, action: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
+          concept: nil, template: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -105,7 +105,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {view: view} }
       let(:custom_options) do
         {
-          concept: nil, action: false, path: false, type: type_in_string, name: false, json: false,
+          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
           concept_path: concept_path, view: view_in_string
         }
       end
@@ -123,7 +123,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     #   let(:json_parsed) { Trailblazer::Generator::Utils::Parse.json(json) }
     #   let(:custom_options) do
     #     {
-    #       concept: nil, action: false, path: false, type: type_in_string, name: false, json: json_parsed,
+    #       concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
     #       concept_path: concept_path, view: false
     #     }
     #   end

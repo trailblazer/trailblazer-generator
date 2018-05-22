@@ -35,8 +35,8 @@ Examples:
 - `bin/trailblazer g operation Post Create --layout="singular"` -> will create the file `app/concepts/post/operation/create.rb` (which is the default)
 - `bin/trailblazer g operation Post Create --layout="plural"` -> will create the file `app/concepts/post/operations/create.rb`
 
-### action:
-option `--action` allows to use a specific template
+###Use of template:
+option --template allows to use a specific existing template
 
 Examples:
 - `bin/trailblazer g operation Post Create --actiom=index` -> will create the file `app/concepts/post/operation/create.rb` user the `index` template
