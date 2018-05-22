@@ -25,26 +25,26 @@ module Trailblazer
         Utils::Validate.new.class_name(name)
       end
 
-      def generate_concept(context, _templates)
+      def generate_concept(context, _actions)
         Utils::Files.mkdir(Concept.dir(context.concept_path))
       end
 
-      def generate_multiple(context, templates)
-        templates.each do |action|
+      def generate_multiple(context, actions)
+        actions.each do |action|
           context.action = action
           # this need to be capitalize because the action comes from the default array
-          context.name   = action.capitalize
+          context.name   = Utils::String.new(action).capitalize
           generate_single(context)
         end
       end
 
-      def generate_single(context, _templates = nil)
+      def generate_single(context, _actions = nil)
         Utils::Files.generate(context, @type)
       end
 
-      def run(op, type, templates)
+      def run(op, type, actions)
         @type = type
-        send("generate_#{op}", context, templates)
+        send("generate_#{op}", context, actions)
       end
 
       def context

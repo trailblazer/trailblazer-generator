@@ -10,7 +10,7 @@ module Trailblazer
           desc "Generate a Trailblazer Contract"
           example [
             "trb generate contract Blog Create",
-            "trb generate contract Blog Create --template=index",
+            "trb generate contract Blog Create --action=index",
             "trb generate contract Blog Create --layout=plural"
           ]
 
@@ -19,10 +19,11 @@ module Trailblazer
           argument :name, required: true, desc: ARGUMENT_NAME
 
           # Optional Arguments
-          option :template, desc: OPTION_TEMPLATE
+          option :action, desc: OPTION_ACTION
           option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: OPTION_LAYOUT
           option :json, desc: OPTION_JSON
           option :path, desc: OPTION_PATH
+          option :stubs, desc: OPTION_STUBS
 
           # Apply context and call generator
           def call(concept:, **options)

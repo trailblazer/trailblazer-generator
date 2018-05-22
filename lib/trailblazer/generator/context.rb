@@ -9,7 +9,7 @@ module Trailblazer
       def initialize(data)
         data = data.each_with_object({}) do |(key, value), result|
           value = Utils::String.new(value) if value.is_a?(::String)
-          value = value.underscore if key == :template && value
+          value = value.underscore if key == :action && value
           result[key] = value
         end
 
