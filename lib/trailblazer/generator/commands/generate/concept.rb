@@ -24,6 +24,7 @@ module Trailblazer
           option :json, desc: OPTION_JSON 
           option :stubs, desc: "Custom stub path"
           option :path, desc: "Overwrite the destination path manually"
+          option :stubs, desc: OPTION_STUBS
 
           # Apply context and call generator
           def call(concept:, **options)

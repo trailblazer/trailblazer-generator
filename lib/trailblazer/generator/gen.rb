@@ -30,10 +30,10 @@ module Trailblazer
       end
 
       def generate_multiple(context, templates)
-        templates.each do |action|
-          context.action = action
+        templates.each do |template|
+          context.template = template
           # this need to be capitalize because the action comes from the default array
-          context.name   = action.capitalize
+          context.name   = Utils::String.new(template).capitalize
           generate_single(context)
         end
       end

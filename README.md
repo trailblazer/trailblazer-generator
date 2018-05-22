@@ -43,6 +43,12 @@ Examples:
 
 If template is not found a Notice message saying that template yeah_nah template is not found and a generic one is used
 
+### Use of stubs
+option --stubs allows to set a custom folder where a template will searched for.
+Requirements:
+- `erb` file
+- expected stubs folder to have cell, contract, operation, view structure
+
 ### view (only for commands cell, cells and concept):
 option `--view` allows to generate the view with a specific template (default slim), when passing --view=none the view file is not created
 

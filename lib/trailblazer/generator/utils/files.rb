@@ -17,17 +17,27 @@ module Trailblazer
         }.freeze
 
         def self.generate(context, type)
-          source_file = DEFAULT_MAP[type].include?(context.template) ? context.template : "generic"
-          if source_file == "generic" && type != :view
-            Say.new.notice("Templete file #{context.template} not found - a generic templete has been used")
-          end
-          source      = Pathname.new(File.join(__dir__, "../stubs/#{type}/#{source_file}.erb"))
+          template    = template(context, type)
+          source      = Pathname.new(File.join("#{template[:path]}/#{type}/#{template[:file_name]}.erb"))
           destination = Generator::Concept.destination(context)
           validate    = Utils::Validate.new
           validate.source(source) # now this one will never fail probably...leave it here to be sure?
           return unless validate.destination(destination)
           write(source, destination, context)
           validate.write(destination)
+        end
+
+        def self.template(context, type)
+          # case not default stubs we let `validation.souce` doing its job
+          template = {file_name: context.template, path: context.stubs}
+          return template unless context.stubs == "../stubs"
+
+          template[:path] = File.join(__dir__, context.stubs)
+          template[:file_name] = DEFAULT_MAP[type].include?(context.template) ? context.template : "generic"
+          if template[:file_name] == "generic" && type != :view
+            Say.new.notice("Templete file #{context.template} not found - a generic templete has been used")
+          end
+          template
         end
 
         def self.write(source, destination, context)

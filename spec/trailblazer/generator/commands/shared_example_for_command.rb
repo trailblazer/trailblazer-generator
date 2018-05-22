@@ -68,6 +68,20 @@ RSpec.shared_examples "a single file generation command" do |type, check_view = 
     end
   end
 
+  context "able to use --stubs to set a different template path" do
+    let(:root_path) { File.join(File.dirname(__dir__), "../../stubs_test") }
+    let(:run_command) { `bin/trailblazer g #{type} #{concept} WeirdOne --stubs=#{root_path}` }
+    let(:file_path) { "app/concepts/shared_example/#{type}/weird_one.rb" }
+
+    it "to generate files from a different set of templates" do
+      expect(run_command).to include "Starting Generator for Trailblazer #{type.capitalize}"
+      expect(run_command).to include "Create"
+      expect(run_command).to include file_path
+      expect(File.read(file_path)).to include "def custom_stuff"
+      expect(Pathname(file_path).exist?).to eq true
+    end
+  end
+
   if check_view
     context "when passing --view option creates the view file" do
       let(:run_command) { `bin/trailblazer g cell SharedExample New --view=slim` }
