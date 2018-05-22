@@ -17,9 +17,9 @@ module Trailblazer
         }.freeze
 
         def self.generate(context, type)
-          source_file = DEFAULT_MAP[type].include?(context.action) ? context.action : "generic"
+          source_file = DEFAULT_MAP[type].include?(context.template) ? context.template : "generic"
           if source_file == "generic" && type != :view
-            Say.new.notice("Templete file #{context.action} not found - a generic templete has been used")
+            Say.new.notice("Templete file #{context.template} not found - a generic templete has been used")
           end
           source      = Pathname.new(File.join(__dir__, "../stubs/#{type}/#{source_file}.erb"))
           destination = Generator::Concept.destination(context)

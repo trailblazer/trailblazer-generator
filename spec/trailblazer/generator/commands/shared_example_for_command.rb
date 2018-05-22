@@ -39,9 +39,9 @@ RSpec.shared_examples "a single file generation command" do |type|
     end
   end
 
-  context "generates file from template using --action option" do
+  context "generates file from template using --template option" do
     let(:another_template) { template_array.sample }
-    let(:run_command) { `bin/trailblazer g #{type} #{concept} #{template.capitalize} --action=#{another_template}` }
+    let(:run_command) { `bin/trailblazer g #{type} #{concept} #{template.capitalize} --template=#{another_template}` }
     let(:file) { Pathname.new("./app/concepts/shared_example/#{type}/#{template}.rb") }
 
     it "and shows create messages" do
