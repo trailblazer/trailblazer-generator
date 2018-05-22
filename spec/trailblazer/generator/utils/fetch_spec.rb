@@ -91,8 +91,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {name: "SomeName"} }
       let(:custom_options) do
         {
-          concept: nil, action: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
-          concept_path: concept_path, view: false, stubs: stubs
+          concept: nil, template: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
+          concept_path: concept_path, view: view_in_string, stubs: stubs
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -107,8 +107,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:stubs) { "some_stubs" }
       let(:custom_options) do
         {
-          concept: nil, action: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: false, stubs: stubs
+          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
+          concept_path: concept_path, view: view_in_string, stubs: stubs
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -142,7 +142,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     #   let(:custom_options) do
     #     {
     #       concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
-    #       concept_path: concept_path, view: false
+    #       concept_path: concept_path, view: view_in_string, stubs: stubs
     #     }
     #   end
     #   let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
