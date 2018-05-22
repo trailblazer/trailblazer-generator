@@ -19,11 +19,11 @@ module Trailblazer
         ARGUMENT_CONCEPT = "The concept the generated file(s) should be placed in".freeze
         ARGUMENT_NAME    = "The name for the generated file".freeze
 
-        OPTION_ACTION    = "The action used as template to generate the file".freeze
+        OPTION_TEMPLATE  = "The template used to generate the file".freeze
         OPTION_PATH      = "Overwrite the destination path manually".freeze
         OPTION_LAYOUT    = "Concepts directory layout".freeze
         OPTION_JSON      = "Json file for population of contract templates".freeze
-        OPTION_VIEW      = "Template engine for view files".freeze
+        OPTION_VIEW      = "Template engine for view files (default slim - pass none to don't create a view file".freeze
         OPTION_STUBS     = "Custom stub path".freeze
 
         require "trailblazer/generator/commands/generate/base"

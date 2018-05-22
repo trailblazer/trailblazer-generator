@@ -12,17 +12,17 @@ module Trailblazer
 
         def self.context(options, type, concept = nil)
           concept_path = Utils::String.underscore(concept)
-          type   = option(options, :layout) == "plural" ? "#{type}s" : type.to_s
-          name   = option(options, :name)
-          action = option(options, :action) || name
-          path   = option(options, :path)
-          json   = option(options, :json)
-          json   = Parse.json(json) if json
-          view   = option(options, :view)
+          type     = option(options, :layout) == "plural" ? "#{type}s" : type.to_s
+          name     = option(options, :name)
+          template = option(options, :template) || name
+          path     = option(options, :path)
+          json     = option(options, :json)
+          json     = Parse.json(json) if json
+          view   = option(options, :view) || "slim"
           stubs  = option(options, :stubs) || "../stubs"
 
           Context.new(
-            concept: concept, action: action, path: path, type: type, name: name, json: json,
+            concept: concept, template: template, path: path, type: type, name: name, json: json,
             concept_path: concept_path, view: view, stubs: stubs
           )
         end

@@ -4,7 +4,7 @@ require "pathname"
 RSpec.describe Trailblazer::Generator::Utils::Files do
   let(:context) do
     Trailblazer::Generator::Context.new(
-      action: action,
+      template: "new",
       path: false,
       concept: "Blog",
       layout: "singular",
@@ -16,7 +16,7 @@ RSpec.describe Trailblazer::Generator::Utils::Files do
   end
   let(:type) { :operation }
   let(:stubs) { "../stubs" }
-  let(:action) { "new" }
+  let(:template) { "new" }
 
   subject(:files) { described_class }
 
@@ -34,11 +34,11 @@ RSpec.describe Trailblazer::Generator::Utils::Files do
 
   context "#template" do
     context "with default stubs and existing template" do
-      let(:action) { "create" }
-      it "returns action" do
+      let(:template) { "create" }
+      it "returns template" do
         expect(files.template(context, type))
           .to eq(
-            file_name: Trailblazer::Generator::Utils::String.new(action),
+            file_name: Trailblazer::Generator::Utils::String.new(template),
             path: File.join(Dir.pwd, "/lib/trailblazer/generator/utils/../stubs")
           )
       end
@@ -46,7 +46,7 @@ RSpec.describe Trailblazer::Generator::Utils::Files do
 
     context "with default stubs and not existing template" do
       let(:output) { files.template(context, type) }
-      let(:action) { "weird" }
+      let(:template) { "weird" }
 
       before { allow_any_instance_of(Trailblazer::Generator::Utils::Say).to receive(:notice).and_return(true) }
 
@@ -62,7 +62,7 @@ RSpec.describe Trailblazer::Generator::Utils::Files do
     context "when passing a custom stubs" do
       let(:stubs) { "custom_stubs" }
 
-      it "returns just action" do
+      it "returns just template" do
         expect(files.template(context, type))
           .to eq(
             file_name: "new",
