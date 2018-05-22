@@ -23,7 +23,7 @@ module Trailblazer
         OPTION_PATH      = "Overwrite the destination path manually".freeze
         OPTION_LAYOUT    = "Concepts directory layout".freeze
         OPTION_JSON      = "Json file for population of contract templates".freeze
-        OPTION_VIEW      = "Template engine for view files".freeze
+        OPTION_VIEW      = "Template engine for view files (default slim - pass none to don't create a view file".freeze
 
         require "trailblazer/generator/commands/generate/base"
         require "trailblazer/generator/commands/generate/concept"

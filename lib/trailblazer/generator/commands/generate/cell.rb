@@ -29,7 +29,7 @@ module Trailblazer
           def call(concept:, **options)
             start_generator(concept, options)
             run_generator :single, :cell
-            run_generator :single, :view if options[:view]
+            run_generator :single, :view unless options[:view] == "none"
             close_generator
           end
         end
