@@ -1,5 +1,5 @@
 # Trailblazer Generator
-all basic commands have --help
+Master: [![Build Status](https://travis-ci.org/trailblazer/trailblazer-generator.svg)](https://travis-ci.org/trailblazer/trailblazer-generator)
 
 ## Single file generation
 
@@ -27,37 +27,44 @@ Example:
 - `bin/trailblazer g operation Post` -> will generate `index.rb`, `create.rb`, `show.rb` and `update.rb` in `app/concepts/post/operation`
 
 ## Options
-### layout:
-option `
---layout` allows to change the concept directory layout
+### `--layout`
+`plural` and `singular` (default one) are the possible options
 
 Examples:
 - `bin/trailblazer g operation Post Create --layout="singular"` -> will create the file `app/concepts/post/operation/create.rb` (which is the default)
 - `bin/trailblazer g operation Post Create --layout="plural"` -> will create the file `app/concepts/post/operations/create.rb`
 
-###Use of template:
-option --template allows to use a specific existing template
+### `--template`
+allows to use a specific existing template
 
 Examples:
 - `bin/trailblazer g operation Post Create --actiom=index` -> will create the file `app/concepts/post/operation/create.rb` user the `index` template
 
 If template is not found a Notice message saying that template yeah_nah template is not found and a generic one is used
 
-### Use of stubs
-option --stubs allows to set a custom folder where a template will searched for.
+### `--stubs`
+allows to pass a custom folder as source where the template will be searched into
+
 Requirements:
 - `erb` file
 - expected stubs folder to have cell, contract, operation, view structure
 
-### view (only for commands cell, cells and concept):
-option `--view` allows to generate the view with a specific template (default slim), when passing --view=none the view file is not created
+### `--view` (only for commands cell, cells and concept):
+allows to generate the view file with a template engine other than the default `erb`, when passing `--view=none` the view file will not be created
 
 Examples:
 - `bin/trailblazer g cell Post Create --view=erb` -> will create 2 files `app/concepts/post/cell/create.rb` and `app/concepts/post/view/create.slim`
 
-### TODO: other options
+### `--path`
+allows to specify a different destination folder for the generating file (available in all commands)
+
+- `bin/trailblazer g operation Post Create --path=custom_path` -> will create 1 file `custom_path/post/operation/create.rb`
+
+### `--json`
+generates code
+TODO: more info and example for this
 
 ## NOTE
 This is a work in progress.
 
-The main idea we want with generator in the end, is that it also generators what's inside your files for the most basic aspects, think of validations, etc.
+The main idea we want with generator in the end, is that it also generates what's inside your files for the most basic aspects, think of validations, etc.
