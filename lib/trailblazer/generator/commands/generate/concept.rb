@@ -1,5 +1,3 @@
-require "trailblazer/generator/gen"
-
 module Trailblazer
   # Trailblazer Generator
   class Generator
@@ -25,14 +23,12 @@ module Trailblazer
           option :path, desc: OPTION_PATH
           option :stubs, desc: OPTION_STUBS
 
-          # Apply context and call generator
           def call(concept:, **options)
-            start_generator(concept, options)
-            run_generator :concept, :concept
-            run_generator :multiple, :operation, Generate::DEFAULT_OPERATIONS
-            run_generator :multiple, :cell, Generate::DEFAULT_CELLS
-            run_generator :multiple, :view, Generate::DEFAULT_CELLS if options[:view]
-            run_generator :multiple, :contract, Generate::DEFAULT_CONTRACTS
+            run_generator concept, :concept, options
+            run_generator concept, :operation, options, Generate::DEFAULT_OPERATIONS
+            run_generator concept, :cell, options, Generate::DEFAULT_CELLS
+            run_generator concept, :view, options, Generate::DEFAULT_CELLS unless options[:view] == "none"
+            run_generator concept, :contract, options, Generate::DEFAULT_CONTRACTS
             close_generator
           end
         end

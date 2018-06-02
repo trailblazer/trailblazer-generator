@@ -26,11 +26,9 @@ module Trailblazer
           option :path, desc: OPTION_PATH
           option :stubs, desc: OPTION_STUBS
 
-          # Apply context and call generator
           def call(concept:, **options)
-            start_generator(concept, options)
-            run_generator :single, :cell
-            run_generator :single, :view unless options[:view] == "none"
+            run_generator concept, :cell, options
+            run_generator concept, :view, options unless options[:view] == "none"
             close_generator
           end
         end

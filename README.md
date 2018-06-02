@@ -68,3 +68,6 @@ TODO: more info and example for this
 This is a work in progress.
 
 The main idea we want with generator in the end, is that it also generates what's inside your files for the most basic aspects, think of validations, etc.
+
+#### For developers
+Using the `abort` method in `Trailblazer::Generator::Utils::Error` class can abort the test suite as well so make sure to handle any rasing errors!!!

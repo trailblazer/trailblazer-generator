@@ -18,8 +18,8 @@ module Trailblazer
           path     = option(options, :path)
           json     = option(options, :json)
           json     = Parse.json(json) if json
-          view     = option(options, :view) || "slim"
-          stubs    = option(options, :stubs) || "../stubs"
+          view     = option(options, :view) || "erb"
+          stubs    = option(options, :stubs) || "stubs"
 
           Context.new(
             concept: concept, template: template, path: path, type: type, name: name, json: json,

@@ -25,10 +25,8 @@ module Trailblazer
           option :path, desc: OPTION_PATH
           option :stubs, desc: OPTION_STUBS
 
-          # Apply context and call generator
           def call(concept:, **options)
-            start_generator(concept, options)
-            run_generator :single, :contract
+            run_generator concept, :contract, options
             close_generator
           end
         end

@@ -22,10 +22,8 @@ module Trailblazer
           option :path, desc: OPTION_PATH
           option :stubs, desc: OPTION_STUBS
 
-          # Call the individual generators for all default operations
           def call(concept:, **options)
-            start_generator(concept, options)
-            run_generator :multiple, :operation, Generate::DEFAULT_OPERATIONS
+            run_generator concept, :operation, options, Generate::DEFAULT_OPERATIONS
             close_generator
           end
         end
