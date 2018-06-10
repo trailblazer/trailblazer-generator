@@ -1,5 +1,6 @@
 # Trailblazer Generator
 Master: [![Build Status](https://travis-ci.org/trailblazer/trailblazer-generator.svg)](https://travis-ci.org/trailblazer/trailblazer-generator)
+[![Coverage Status](https://coveralls.io/repos/github/trailblazer/trailblazer-generator/badge.svg?branch=master)](https://coveralls.io/github/trailblazer/trailblazer-generator?branch=master)
 
 ## Single file generation
 
