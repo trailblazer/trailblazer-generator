@@ -9,11 +9,11 @@ module Trailblazer
       # Generate Command
       module Generate
         # Default arrays
-        DEFAULT_OPERATIONS = %w[index create update delete show].freeze
-        DEFAULT_CELLS      = %w[index item new edit show].freeze
-        DEFAULT_CONTRACTS  = %w[create update].freeze
-        DEFAULT_FINDERS    = %w[list].freeze
-        DEFAULT_LAYOUTS    = %w[plural singular].freeze
+        DEFAULT_OPERATIONS = Utils::Files::DEFAULT_MAP[:operation]
+        DEFAULT_CELLS      = Utils::Files::DEFAULT_MAP[:cell]
+        DEFAULT_CONTRACTS  = Utils::Files::DEFAULT_MAP[:contract]
+        DEFAULT_FINDERS    = Utils::Files::DEFAULT_MAP[:finder]
+        DEFAULT_LAYOUTS    = Utils::Files::DEFAULT_MAP[:layout]
 
         # Descriptions for common used arguments
         ARGUMENT_CONCEPT = "The concept the generated file(s) should be placed in".freeze

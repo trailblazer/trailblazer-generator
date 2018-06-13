@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "hanami-cli"
   spec.add_dependency "hanami-utils"
   spec.add_dependency "highline", "~> 2.0.0.pre.develop.14"
+  spec.add_dependency "trailblazer-activity"
   spec.add_dependency "tty-prompt", "~> 0.15.0"
 
   spec.add_development_dependency "bundler"

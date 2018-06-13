@@ -26,5 +26,4 @@ task :gem do
 end
 
 desc "Running Tests"
-#task default: %i[clean spec rubocop]
-task default: %i[clean tests]
+task default: %i[clean spec rubocop]

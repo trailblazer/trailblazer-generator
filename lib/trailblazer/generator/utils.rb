@@ -29,7 +29,6 @@ module Trailblazer
       require "trailblazer/generator/utils/say"
       require "trailblazer/generator/utils/ask"
       require "trailblazer/generator/utils/menu"
-      require "trailblazer/generator/utils/validate"
       require "trailblazer/generator/utils/parse"
     end
   end

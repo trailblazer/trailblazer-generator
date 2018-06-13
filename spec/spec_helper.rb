@@ -5,6 +5,9 @@ SimpleCov.start do
   add_group "Tests", "spec"
 end
 
+require 'coveralls'
+Coveralls.wear!
+
 require "trailblazer/generator"
 
 module Helpers
@@ -21,6 +24,8 @@ module Helpers
   end
 
   # does not shows terminal outputs and errors
+  # NOTE: use this `bundle exec rspec -f d --color --dry-run ./spec`
+  #       to double check the total number of examples
   def capture_stdout(&_block)
     begin
       $stdout = StringIO.new
@@ -37,8 +42,7 @@ module Helpers
   end
 
   def generate_dummy_app
-    gen_concepts = Trailblazer::Generator::Commands::Generate::Concept.new(command_name: "concept")
-    capture_stdout { gen_concepts.call(concept: 'Post') } # TODO: we still have something shown in the terminal - fix it!
+    `bin/trailblazer g concept Post`
   end
 
   def remove_dummy_app

@@ -20,8 +20,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     let(:type) { :some_type }
     let(:type_in_string) { Trailblazer::Generator::Utils::String.new(type) }
     let(:view_in_string) { Trailblazer::Generator::Utils::String.new(view) }
-    let(:view) { "slim" }
-    let(:stubs) { "../stubs" }
+    let(:view) { "erb" }
+    let(:stubs) { "stubs" }
     let(:stubs_in_string) { Trailblazer::Generator::Utils::String.new(stubs) }
 
     subject(:context) { fetch.context(options, type) }

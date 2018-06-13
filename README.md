@@ -1,5 +1,22 @@
 # Trailblazer Generator
 Master: [![Build Status](https://travis-ci.org/trailblazer/trailblazer-generator.svg)](https://travis-ci.org/trailblazer/trailblazer-generator)
+[![Coverage Status](https://coveralls.io/repos/github/trailblazer/trailblazer-generator/badge.svg?branch=master)](https://coveralls.io/github/trailblazer/trailblazer-generator?branch=master)
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'trailblazer-generator'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install trailblazer-generator
 
 ## Single file generation
 
@@ -68,3 +85,6 @@ TODO: more info and example for this
 This is a work in progress.
 
 The main idea we want with generator in the end, is that it also generates what's inside your files for the most basic aspects, think of validations, etc.
+
+#### For developers
+Using the `abort` method in `Trailblazer::Generator::Utils::Error` class can abort the test suite as well so make sure to handle any rasing errors!!!
