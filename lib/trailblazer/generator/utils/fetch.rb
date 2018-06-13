@@ -10,6 +10,8 @@ module Trailblazer
           false
         end
 
+        # rubocop:disable Metrics/MethodLength
+        # rubocop:disable Metrics/AbcSize
         def self.context(options, type, concept = nil)
           concept_path = Utils::String.underscore(concept)
           type     = option(options, :layout) == "plural" ? "#{type}s" : type.to_s
@@ -26,6 +28,8 @@ module Trailblazer
             concept_path: concept_path, view: view, stubs: stubs
           )
         end
+        # rubocop:enable Metrics/MethodLength
+        # rubocop:enable Metrics/AbcSize
 
         def self.concept(concept)
           concept_path = Utils::String.underscore(concept)

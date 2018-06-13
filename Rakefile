@@ -16,13 +16,13 @@ RuboCop::RakeTask.new(:rubocop)
 
 desc "Remove temporary files"
 task :clean do
-  %x{rm -rf *.gem doc pkg coverage test-reports}
-  %x{rm -f `find . -name "*.rbc"`}
+  `rm -rf *.gem doc pkg coverage test-reports`
+  %x(rm -f `find . -name "*.rbc"`)
 end
 
 desc "Build the gem"
 task :gem do
-  %x{gem build trailblazer-generator.gemspec}
+  `gem build trailblazer-generator.gemspec`
 end
 
 desc "Running Tests"
