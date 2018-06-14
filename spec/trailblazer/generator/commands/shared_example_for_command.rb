@@ -106,9 +106,7 @@ RSpec.shared_examples "a single file generation command" do |desc_class, type, c
     let(:options) { {name: template.capitalize} }
 
     it "fails and shows error message" do
-      expect {
-        run_command
-      }.to raise_error SystemExit, /You provided an invalid class name - #{concept}/
+      expect { run_command }.to raise_error SystemExit, /You provided an invalid class name - #{concept}/
     end
   end
 
@@ -116,9 +114,7 @@ RSpec.shared_examples "a single file generation command" do |desc_class, type, c
     let(:options) { {name: "yeah_nah"} }
 
     it "fails and shows error message" do
-      expect {
-        run_command
-      }.to raise_error SystemExit, /You provided an invalid class name - yeah_nah/
+      expect { run_command }.to raise_error SystemExit, /You provided an invalid class name - yeah_nah/
     end
   end
 
@@ -126,9 +122,7 @@ RSpec.shared_examples "a single file generation command" do |desc_class, type, c
     let(:options) { {name: template.capitalize, stubs: "not_existing_one"} }
 
     it "fails and shows error message" do
-      expect {
-        run_command
-      }.to raise_error SystemExit, /No source file found/
+      expect { run_command }.to raise_error SystemExit, /No source file found/
     end
   end
 end

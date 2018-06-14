@@ -25,9 +25,7 @@ RSpec.describe Trailblazer::Generator::Commands::Generate::Concept do
     let(:concept) { "Post" }
 
     it "shows an error message" do
-      expect {
-        run_command
-      }.to raise_error SystemExit
+      expect { run_command }.to raise_error SystemExit
     end
   end
 end

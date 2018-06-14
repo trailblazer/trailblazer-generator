@@ -6,7 +6,7 @@ module Trailblazer
 
       module_function
 
-      def template(ctx, context:, type:, **)
+      def template(ctx, context:, type:, **) # rubocop:disable Metrics/AbcSize
         ctx[:template] = template = {file_name: context.template, path: context.stubs}
         return unless context.stubs == "stubs"
 

@@ -12,8 +12,8 @@ RSpec.describe Trailblazer::Generator::Utils::Error do
 
     it "raises the error with a source error message" do
       expect { output }.to raise_error SystemExit,
-        "\t#{pastel.red("Error")}:\t#{context.to_s.ljust(55, " ")} - No source file found"\
-        "\n\t\tPlease create it or notify the developers\n\n"\
+                                       "\t#{pastel.red("Error")}:\t#{context.to_s.ljust(55, " ")} - No source file found"\
+                                       "\n\t\tPlease create it or notify the developers\n\n"\
     end
   end
 

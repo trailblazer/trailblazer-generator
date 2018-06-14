@@ -5,7 +5,7 @@ SimpleCov.start do
   add_group "Tests", "spec"
 end
 
-require 'coveralls'
+require "coveralls"
 Coveralls.wear!
 
 require "trailblazer/generator"
@@ -13,20 +13,18 @@ require "trailblazer/generator"
 module Helpers
   # Replace standard input with faked one StringIO.
   def fake_stdin(*args)
-    begin
-      $stdin = StringIO.new
-      $stdin.puts(args.shift) until args.empty?
-      $stdin.rewind
-      yield
-    ensure
-      $stdin = STDIN
-    end
+    $stdin = StringIO.new
+    $stdin.puts(args.shift) until args.empty?
+    $stdin.rewind
+    yield
+  ensure
+    $stdin = STDIN
   end
 
   # does not shows terminal outputs and errors
   # NOTE: use this `bundle exec rspec -f d --color --dry-run ./spec`
   #       to double check the total number of examples
-  def capture_stdout(&_block)
+  def capture_stdout(&_block) # rubocop:disable Metrics/MethodLength
     begin
       $stdout = StringIO.new
       $stderr = StringIO.new
@@ -46,7 +44,7 @@ module Helpers
   end
 
   def remove_dummy_app
-    Hanami::Utils::Files.delete_directory('./app')
+    Hanami::Utils::Files.delete_directory("./app")
   end
 end
 
