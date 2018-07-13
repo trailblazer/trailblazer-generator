@@ -38,7 +38,7 @@ module Trailblazer
         Utils::Files.mkdir(destination)
       end
 
-      def self.destination(context) # rubocop:disable Metrics/AbcSize
+      def self.destination(context)
         # NOTE:
         # when using the default array to generate the files the context.name is a capitalize string so we need just downcase
         # instead when commands are called from the user can be anything so we use underscore

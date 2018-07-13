@@ -4,8 +4,8 @@ module Trailblazer
     module Generate
       extend Trailblazer::Activity::Railway()
 
-      REGEXP_CONCEPT = /^[A-Z][A-Za-z]{1,}(::[A-Z][A-Za-z]{1,})?/
-      REGEXP_NAME = /^[A-Z][A-Za-z]*$/
+      REGEXP_CONCEPT = /^[A-Z][A-Za-z]{1,}(::[A-Z][A-Za-z]{1,})?/.freeze
+      REGEXP_NAME = /^[A-Z][A-Za-z]*$/.freeze
 
       module_function
 
@@ -15,6 +15,7 @@ module Trailblazer
 
       def validate_class_name(_ctx, options:, type:, **)
         return Trailblazer::Activity::Right if type == :concept
+
         options[:name].match REGEXP_NAME
       end
 

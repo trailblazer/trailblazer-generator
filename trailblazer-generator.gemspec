@@ -20,7 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "hanami-cli"
   spec.add_dependency "hanami-utils"
-  spec.add_dependency "highline", "~> 2.0.0.pre.develop.14"
   spec.add_dependency "trailblazer-activity"
   spec.add_dependency "tty-prompt", "~> 0.15.0"
 
@@ -33,5 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "simplecov"
 
-  spec.required_ruby_version = ">= 2.1.0"
+  # NOTE: to use latest hanami-utils we need to have at least ruby 2.3.0
+  spec.required_ruby_version = ">= 2.3.0" # rubocop:disable Gemspec/RequiredRubyVersion
 end
