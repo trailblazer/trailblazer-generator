@@ -20,7 +20,7 @@ module Trailblazer
 
           # Optional Arguments
           option :template, desc: OPTION_TEMPLATE
-          option :layout, default: :singular, values: DEFAULT_LAYOUTS, desc: OPTION_LAYOUT
+          option :layout, default: :singular, desc: OPTION_LAYOUT
           option :json, desc: OPTION_JSON
           option :path, desc: OPTION_PATH
           option :stubs, desc: OPTION_STUBS

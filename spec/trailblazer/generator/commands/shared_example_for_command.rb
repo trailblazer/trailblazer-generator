@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.shared_examples "a single file generation command" do |desc_class, type, check_view = false|
   let(:concept) { "SharedExample" }
-  let(:template_array) { Trailblazer::Generator::Utils::Files::DEFAULT_MAP[type.to_sym] }
+  let(:template_array) { Trailblazer::Generator.file_list.public_send(type) }
   let(:template) { template_array.sample }
 
   before do

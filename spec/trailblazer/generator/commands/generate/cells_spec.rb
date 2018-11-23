@@ -13,7 +13,7 @@ RSpec.describe Trailblazer::Generator::Commands::Generate::Cells do
     expect(run_command[:stdout]). to include "Starting Generator for Trailblazer Cell"
     expect(run_command[:stdout]). to include "Starting Generator for Trailblazer View"
 
-    Trailblazer::Generator::Utils::Files::DEFAULT_MAP[:cell].each do |template|
+    Trailblazer::Generator.file_list.cell.each do |template|
       file = Pathname.new("./app/concepts/shared_example_cell/cell/#{template}.rb")
       view_file = Pathname.new("./app/concepts/shared_example_cell/view/#{template}.erb")
       expect(Pathname(file).exist?).to eq true

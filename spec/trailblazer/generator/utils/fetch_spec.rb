@@ -134,23 +134,22 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       end
     end
 
-    # Disabling this as we have excluded the other related features until we're satisfied
-    # context "when passing json" do
-    #   let(:json) { Pathname.new("./test.json") }
-    #   let(:options) { {json: json} }
-    #   let(:json_parsed) { Trailblazer::Generator::Utils::Parse.json(json) }
-    #   let(:custom_options) do
-    #     {
-    #       concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
-    #       concept_path: concept_path, view: view_in_string, stubs: stubs
-    #     }
-    #   end
-    #   let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
+    context "when passing json", skip: "Disabling this as we have excluded the other related features until we're satisfied" do
+      let(:json) { Pathname.new("./test.json") }
+      let(:options) { {json: json} }
+      let(:json_parsed) { Trailblazer::Generator::Utils::Parse.json(json) }
+      let(:custom_options) do
+        {
+          concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
+          concept_path: concept_path, view: view_in_string, stubs: stubs
+        }
+      end
+      let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
 
-    #   it "creates a custom Context object with custom options" do
-    #     expect(context).to eq custom_context
-    #   end
-    # end
+      it "creates a custom Context object with custom options" do
+        expect(context).to eq custom_context
+      end
+    end
   end
 
   context "#concept" do

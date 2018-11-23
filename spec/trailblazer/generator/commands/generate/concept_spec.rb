@@ -12,10 +12,8 @@ RSpec.describe Trailblazer::Generator::Commands::Generate::Concept do
   it "creates a full concept folder" do
     expect(run_command[:stdout]). to include "Starting Generator for Trailblazer Concept"
 
-    Trailblazer::Generator::Utils::Files::DEFAULT_MAP.each do |type, templates|
-      next if type == :finder
-
-      templates.each do |template|
+    %i[operation cell contract view].each do |type|
+      Trailblazer::Generator.file_list.public_send(type).each do |template|
         file = Pathname.new("./app/concepts/shared_example_concept/#{type}/#{template}.rb")
         expect(Pathname(file).exist?).to eq true
       end
