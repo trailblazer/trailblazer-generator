@@ -9,7 +9,8 @@ RSpec.describe Trailblazer::Generator::GenerateFile do
       concept: "Blog",
       layout: "singular",
       name: "New",
-      concept_path: "blog",
+      namespace: "Blog::Operation",
+      namespace_path: "blog/operation",
       stubs: stubs,
       type: type
     )

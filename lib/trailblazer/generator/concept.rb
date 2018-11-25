@@ -38,7 +38,7 @@ module Trailblazer
         file_name = context.name.is_a?(::String) ? context.name.downcase : context.name.underscore
         # NOTE: need to use include so when --layout=plural is set this is still working
         template  = context.view && context.type.include?("view") ? context.view : "rb"
-        "#{context.path ? context.path + "/" : root}#{context.concept_path}/#{context.type}/#{file_name}.#{template}"
+        "#{context.path ? context.path + "/" : root}#{context.namespace_path}/#{file_name}.#{template}"
       end
     end
   end

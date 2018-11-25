@@ -14,24 +14,26 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
   end
 
   context "#context" do
-    let(:concept) { nil }
+    let(:concept) { "Blog" }
     let(:concept_path) { Trailblazer::Generator::Utils::String.underscore(concept) }
     let(:concept_in_string) { Trailblazer::Generator::Utils::String.new(concept) }
-    let(:type) { :some_type }
+    let(:type) { :type }
     let(:type_in_string) { Trailblazer::Generator::Utils::String.new(type) }
     let(:view_in_string) { Trailblazer::Generator::Utils::String.new(view) }
     let(:view) { "erb" }
     let(:stubs) { "stubs" }
     let(:stubs_in_string) { Trailblazer::Generator::Utils::String.new(stubs) }
+    let(:namespace) { "Blog::Type" }
+    let(:namespace_path) { "blog/type" }
 
-    subject(:context) { fetch.context(options, type) }
+    subject(:context) { fetch.context(options, type, concept) }
 
     context "default options" do
       let(:options) { {} }
       let(:default_options) do
         {
-          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:default_context) { Trailblazer::Generator::Context.new(default_options) }
@@ -44,10 +46,12 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     context "when passing layout as plural" do
       let(:options) { {layout: "plural"} }
       let(:type_in_string) { Trailblazer::Generator::Utils::String.new("#{type}s") }
+      let(:namespace) { "Blog::Types" }
+      let(:namespace_path) { "blog/types" }
       let(:custom_options) do
         {
-          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -57,27 +61,12 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       end
     end
 
-    context "when passing a concept" do
-      let(:concept) { "BlogPost::Post" }
-      let(:custom_options) do
-        {
-          concept: concept_in_string, template: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
-        }
-      end
-      let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
-
-      it "creates a new Context object with default options" do
-        expect(fetch.context({}, type, concept)).to eq custom_context
-      end
-    end
-
     context "when passing an template and the name" do
       let(:options) { {template: "new", name: "SomeName"} }
       let(:custom_options) do
         {
-          concept: nil, template: "new", path: false, type: type_in_string, name: "SomeName", json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: "new", path: false, type: type_in_string, name: "SomeName", json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -91,8 +80,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {name: "SomeName"} }
       let(:custom_options) do
         {
-          concept: nil, template: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -107,8 +96,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:stubs) { "some_stubs" }
       let(:custom_options) do
         {
-          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -123,8 +112,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:options) { {view: view} }
       let(:custom_options) do
         {
-          concept: nil, template: false, path: false, type: type_in_string, name: false, json: false,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -141,7 +130,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
-          concept_path: concept_path, view: view_in_string, stubs: stubs
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -176,6 +165,21 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
 
         expect(output[:stdout]).to eq ""
       end
+    end
+  end
+
+  context "#namespace" do
+    let(:options) { {add_type_to_namespace: add_type_to_namespace?} }
+    let(:add_type_to_namespace?) { true }
+
+    subject(:namespace) { described_class.namespace(options, "Blog", "type") }
+
+    it { is_expected.to eq "Blog::Type" }
+
+    context "when add_type_to_namespace is false" do
+      let(:add_type_to_namespace?) { false }
+
+      it { is_expected.to eq "Blog" }
     end
   end
 end

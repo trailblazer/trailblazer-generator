@@ -32,22 +32,22 @@ RSpec.describe Trailblazer::Generator::Concept do
   end
 
   context "#destination" do
-    let(:type) { "some_type" }
+    let(:type) { "type" }
     let(:view) { false }
     let(:path) { false }
     let(:context) do
       OpenStruct.new(
-        path: path, concept: "Blog", layout: "singular", name: "Create", concept_path: "blog",
-        type: type, view: view
+        path: path, concept: "Blog", layout: "singular", name: "Create",
+        type: type, view: view, namespace_path: "blog/#{type}"
       )
     end
 
-    it { expect(concept.destination(context)).to eq "app/concepts/blog/some_type/create.rb" }
+    it { expect(concept.destination(context)).to eq "app/concepts/blog/type/create.rb" }
 
     context "when context has path" do
       let(:path) { "some_path" }
 
-      it { expect(concept.destination(context)).to eq "some_path/blog/some_type/create.rb" }
+      it { expect(concept.destination(context)).to eq "some_path/blog/type/create.rb" }
     end
 
     context "when context has view and type is view" do
