@@ -24,7 +24,7 @@ module Helpers
   # does not shows terminal outputs and errors
   # NOTE: use this `bundle exec rspec -f d --color --dry-run ./spec`
   #       to double check the total number of examples
-  def capture_stdout(&_block) # rubocop:disable Metrics/MethodLength
+  def capture_stdout(&_block)
     begin
       $stdout = StringIO.new
       $stderr = StringIO.new

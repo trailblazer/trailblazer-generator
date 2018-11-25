@@ -8,6 +8,7 @@ module Trailblazer
       # Fetch Options
       class Files
         # TODO: make this default array more accessable/editable
+        # rubocop:disable Layout/AlignHash
         DEFAULT_MAP = {
           operation: %w[index create update delete show].freeze,
           cell:      %w[index item new edit show].freeze,
@@ -15,9 +16,11 @@ module Trailblazer
           finder:    %w[list].freeze,
           view:      %w[].freeze
         }.freeze
+        # rubocop:enable Layout/AlignHash
 
         def self.mkdir(destination)
           return Utils::Error.new.exist(destination) if exist?(destination)
+
           Hanami::Utils::Files.mkdir(destination)
           Say.new.create(destination)
           destination

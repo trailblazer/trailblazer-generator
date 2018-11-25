@@ -14,6 +14,7 @@ RSpec.describe Trailblazer::Generator::Commands::Generate::Concept do
 
     Trailblazer::Generator::Utils::Files::DEFAULT_MAP.each do |type, templates|
       next if type == :finder
+
       templates.each do |template|
         file = Pathname.new("./app/concepts/shared_example_concept/#{type}/#{template}.rb")
         expect(Pathname(file).exist?).to eq true

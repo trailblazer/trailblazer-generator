@@ -6,7 +6,7 @@ module Trailblazer
 
       module_function
 
-      def template(ctx, context:, type:, **) # rubocop:disable Metrics/AbcSize
+      def template(ctx, context:, type:, **)
         ctx[:template] = template = {file_name: context.template, path: context.stubs}
         return unless context.stubs == "stubs"
 
@@ -31,6 +31,7 @@ module Trailblazer
 
       def validate_destination(_ctx, destination:, **)
         return Utils::Ask.new.overwrite?(destination) if Utils::Files.exist?(destination)
+
         Utils::Say.new.create(destination)
         true
       end
