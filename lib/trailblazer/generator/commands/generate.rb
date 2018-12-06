@@ -8,13 +8,6 @@ module Trailblazer
     module Commands
       # Generate Command
       module Generate
-        # Default arrays
-        DEFAULT_OPERATIONS = Utils::Files::DEFAULT_MAP[:operation]
-        DEFAULT_CELLS      = Utils::Files::DEFAULT_MAP[:cell]
-        DEFAULT_CONTRACTS  = Utils::Files::DEFAULT_MAP[:contract]
-        DEFAULT_FINDERS    = Utils::Files::DEFAULT_MAP[:finder]
-        DEFAULT_LAYOUTS    = Utils::Files::DEFAULT_MAP[:layout]
-
         # Descriptions for common used arguments
         ARGUMENT_CONCEPT = "The concept the generated file(s) should be placed in".freeze
         ARGUMENT_NAME    = "The name for the generated file".freeze
@@ -23,7 +16,7 @@ module Trailblazer
         OPTION_PATH      = "Overwrite the destination path manually".freeze
         OPTION_LAYOUT    = "Concepts directory layout".freeze
         OPTION_JSON      = "Json file for population of contract templates".freeze
-        OPTION_VIEW      = "Template engine for view files (default slim - pass none to don't create a view file".freeze
+        OPTION_VIEW      = "Template engine for view files (default erb - pass none to don't create a view file".freeze
         OPTION_STUBS     = "Custom stub path".freeze
 
         require "trailblazer/generator/commands/generate/base"
@@ -36,7 +29,6 @@ module Trailblazer
         require "trailblazer/generator/commands/generate/finder"
       end
 
-      # Rename these to the rightful names later
       register "generate", aliases: ["g"] do |prefix|
         prefix.register "concept", Commands::Generate::Concept
         prefix.register "contract", Commands::Generate::Contract

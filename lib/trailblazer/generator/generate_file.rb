@@ -11,12 +11,16 @@ module Trailblazer
         return unless context.stubs == "stubs"
 
         template[:path] = File.join(__dir__, context.stubs)
-        template[:file_name] = Utils::Files::DEFAULT_MAP[type].include?(context.template) ? context.template : "generic"
-        if template[:file_name] == "generic" && type != :view
-          Utils::Say.new.notice(
-            "Templete file #{context.template} not found - a generic templete has been used"
-          )
-        end
+        template[:file_name] = if Trailblazer::Generator.file_list.public_send(type).include?(context.template)
+                                 context.template
+                               else
+                                 Utils::Say.new.notice(
+                                   "Templete file #{context.template} not found - a generic templete has been used"
+                                 )
+
+                                 "generic"
+                               end
+
         ctx[:template] = template
       end
 

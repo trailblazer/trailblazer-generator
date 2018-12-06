@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Generator for Trailblazer."
   spec.description   = "Generate Trailblazer files from your command line"
   spec.homepage      = "http://trailblazer.to"
-  spec.license       = "LGPL-3.0"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r(^bin/)) { |f| File.basename(f) }
@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "bin"
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "dry-configurable"
   spec.add_dependency "hanami-cli"
   spec.add_dependency "hanami-utils"
   spec.add_dependency "trailblazer-activity"
