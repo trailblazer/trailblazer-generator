@@ -77,9 +77,19 @@ allows to specify a different destination folder for the generating file (availa
 
 - `bin/trailblazer g operation Post Create --path=custom_path` -> will create 1 file `custom_path/post/operation/create.rb`
 
+### `--add_type_to_namespace` (except for commands cell, cells and concept)
+allows to add/remove the type (operation, contract,...) from the generate class namespace and the file destination path.
+It's a boolean option so:
+- `--add_type_to_namespace` -> `true`
+- `--no-add_type_to_namespace` -> `false`
+
+Example:
+- `bin/trailblazer g operation Post Crete --no-add_type_to_namespace` -> will create an operation with namespace `Post::Create` in `app/concepts/post/create.rb`
+
 ### `--json`
 generates code
 TODO: more info and example for this
+
 
 ## NOTE
 This is a work in progress.

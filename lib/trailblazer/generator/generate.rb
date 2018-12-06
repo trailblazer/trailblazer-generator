@@ -29,7 +29,7 @@ module Trailblazer
       end
 
       def generate_concept(ctx, context:, **)
-        ctx[:destination] = destination = Concept.dir(context.concept_path)
+        ctx[:destination] = destination = Concept.dir(Utils::String.underscore(context.concept))
         Utils::Files.mkdir(destination)
       end
 

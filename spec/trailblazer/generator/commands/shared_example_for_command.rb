@@ -101,6 +101,22 @@ RSpec.shared_examples "a single file generation command" do |desc_class, type, c
     end
   end
 
+  unless type == :cell
+    context "able to use --add_type_to_namespace option" do
+      let(:name) { "AddType#{type.capitalize}" }
+      let(:file_name) { ::Trailblazer::Generator::Utils::String.underscore(name) }
+      let(:options) { {name: name, add_type_to_namespace: false} }
+      let(:file) { Pathname.new("./app/concepts/shared_example/#{file_name}.rb") }
+
+      it "creates file without the type in the namespace and path" do
+        expect(run_command[:stdout]).to include "Starting Generator for Trailblazer #{type.capitalize}"
+        expect(run_command[:stdout]).to include "Create"
+        expect(run_command[:stdout]).to include "app/concepts/shared_example/#{file_name}.rb"
+        expect(Pathname(file).exist?).to eq true
+      end
+    end
+  end
+
   context "when passing the wrong concept format" do
     let(:concept) { "yeah_nah" }
     let(:options) { {name: template.capitalize} }
