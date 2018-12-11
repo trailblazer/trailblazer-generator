@@ -5,9 +5,6 @@ SimpleCov.start do
   add_group "Tests", "spec"
 end
 
-require "coveralls"
-Coveralls.wear!
-
 require "trailblazer/generator"
 
 module Helpers
