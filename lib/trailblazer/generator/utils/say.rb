@@ -26,6 +26,13 @@ module Trailblazer
           @prompt.say("    Ending Generator for Trailblazer #{type.capitalize}\n")
         end
 
+        def wrong_file_content(message = nil)
+          message ||= "the content is not an Hash"
+          @prompt.say(
+            "\t#{@pastel.yellow("Warning")}:\t trailblazer_generator.yml has been found but #{message}\n"
+          )
+        end
+
         def close
           @prompt.say("\n")
         end

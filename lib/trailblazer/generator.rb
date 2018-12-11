@@ -12,7 +12,7 @@ module Trailblazer
     # DEFAULT OPTIONS: overridable passing it as option
     setting :view,                  "erb",   reader: true
     setting :stubs,                 "stubs", reader: true
-    setting :add_type_to_namespace, true,    reader: true
+    setting :add_type_to_namespace, "true",  reader: true
 
     # SETTINGS: not overridable
     setting :app_folder,      "app",      reader: true
@@ -28,6 +28,7 @@ module Trailblazer
 end
 
 require "trailblazer/generator/utils"
+require "trailblazer/generator/custom_options"
 require "trailblazer/generator/context"
 require "trailblazer/generator/commands"
 require "trailblazer/generator/concept"

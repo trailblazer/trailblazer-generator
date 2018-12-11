@@ -4,6 +4,11 @@ require "pathname"
 RSpec.describe Trailblazer::Generator::Utils::Fetch do
   subject(:fetch) { described_class }
 
+  before do
+    Trailblazer::Generator.enable_test_interface
+    Trailblazer::Generator.reset_config
+  end
+
   context "#option" do
     let(:options) { {name: "name"} }
 

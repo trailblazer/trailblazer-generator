@@ -1,11 +1,13 @@
 require "bundler/setup"
 require "simplecov"
 SimpleCov.start do
+  add_filter "/.bundle/"
   add_group "Trailblazer-Generator", "lib"
   add_group "Tests", "spec"
 end
 
 require "trailblazer/generator"
+require "dry/configurable/test_interface"
 
 module Helpers
   # Replace standard input with faked one StringIO.
