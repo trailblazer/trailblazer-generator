@@ -14,12 +14,14 @@ module Trailblazer
 
         OPTION_ADD_TYPE_TO_NAMESPACE = "Automatically add type (operation, contract...) in namespace and destination path".freeze
 
-        OPTION_TEMPLATE      = "The template used to generate the file".freeze
-        OPTION_PATH          = "Overwrite the destination path manually".freeze
-        OPTION_LAYOUT        = "Concepts directory layout".freeze
-        OPTION_JSON          = "Json file for population of contract templates".freeze
-        OPTION_VIEW          = "Template engine for view files (default erb - pass none to don't create a view file".freeze
-        OPTION_STUBS         = "Custom stub path".freeze
+        OPTION_TEMPLATE        = "The template used to generate the file".freeze
+        OPTION_PATH            = "Overwrite the destination path manually".freeze
+        OPTION_LAYOUT          = "Concepts directory layout".freeze
+        OPTION_JSON            = "Json file for population of contract templates".freeze
+        OPTION_VIEW            = "Template engine for view files (default erb - pass none to don't create a view file".freeze
+        OPTION_STUBS           = "Custom stub path".freeze
+        OPTION_APP_DIR         = "Folder where the application is located (default: 'app')".freeze
+        OPTION_CONCEPTS_FOLDER = "Concepts folder where all the TRB object are saved (defaul: 'concepts')".freeze
 
         require "trailblazer/generator/commands/generate/base"
         require "trailblazer/generator/commands/generate/concept"

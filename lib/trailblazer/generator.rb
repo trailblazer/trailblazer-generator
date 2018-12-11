@@ -13,10 +13,10 @@ module Trailblazer
     setting :view,                  "erb",   reader: true
     setting :stubs,                 "stubs", reader: true
     setting :add_type_to_namespace, "true",  reader: true
+    setting :app_folder,            "app",      reader: true
+    setting :concepts_folder,       "concepts", reader: true
 
     # SETTINGS: not overridable
-    setting :app_folder,      "app",      reader: true
-    setting :concepts_folder, "concepts", reader: true
     setting :file_list, reader: true do
       setting :operation, %w[index create update delete show].freeze
       setting :cell,      %w[index item new edit show].freeze

@@ -45,6 +45,12 @@ module Helpers
   def remove_dummy_app
     Hanami::Utils::Files.delete_directory("./app")
   end
+
+  def remove_custom_app
+    return unless Dir.exist?("./custom")
+
+    Hanami::Utils::Files.delete_directory("./custom")
+  end
 end
 
 # NOTE: uncomment this to troubleshoot tests
@@ -76,5 +82,6 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     remove_dummy_app
+    remove_custom_app
   end
 end

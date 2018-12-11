@@ -24,10 +24,12 @@ module Trailblazer
         ctx[:template] = template
       end
 
-      def source_and_destination(ctx, template:, type:, context:, **)
+      # rubocop:disable Metrics/ParameterLists
+      def source_and_destination(ctx, template:, type:, context:, options:, **)
         ctx[:source]      = Pathname.new(File.join("#{template[:path]}/#{type}/#{template[:file_name]}.erb"))
-        ctx[:destination] = Generator::Concept.destination(context)
+        ctx[:destination] = Generator::Concept.new(options[:app_dir], options[:concepts_folder]).destination(context)
       end
+      # rubocop:enable Metrics/ParameterLists
 
       def validate_source(_ctx, source:, **)
         Utils::Files.exist?(source)

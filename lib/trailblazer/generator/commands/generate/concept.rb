@@ -8,20 +8,19 @@ module Trailblazer
         # Generate Operation Command
         class Concept < Base
           desc "Generate an entire Concept"
-          example [
-            "trb generate concept Blog",
-            "trb generate concept Blog --layout=plural"
-          ]
+          example ["Blog", "Blog --layout=plural"]
 
           # Required Arguments
           argument :concept, required: true, desc: ARGUMENT_CONCEPT
 
           # Optional Arguments
-          option :view, desc: OPTION_VIEW
-          option :layout, default: :singular, desc: OPTION_LAYOUT
-          option :json, desc: OPTION_JSON
-          option :path, desc: OPTION_PATH
-          option :stubs, desc: OPTION_STUBS
+          option :view,            desc: OPTION_VIEW
+          option :layout,          default: :singular, desc: OPTION_LAYOUT
+          option :json,            desc: OPTION_JSON
+          option :path,            desc: OPTION_PATH
+          option :stubs,           desc: OPTION_STUBS
+          option :app_dir,         desc: OPTION_APP_DIR
+          option :concepts_folder, desc: OPTION_CONCEPTS_FOLDER
 
           def call(concept:, **options)
             read_custom_options

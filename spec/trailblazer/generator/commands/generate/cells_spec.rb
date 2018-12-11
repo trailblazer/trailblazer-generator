@@ -1,11 +1,15 @@
 require "spec_helper"
 require "pathname"
+require "./spec/trailblazer/generator/commands/shared_example_for_commands"
 
 RSpec.describe Trailblazer::Generator::Commands::Generate::Cells do
+  it_behaves_like "a multiple files generation command", described_class, "cells", "cell", true
+
   let(:concept) { "SharedExampleCell" }
+  let(:options) { {concept: concept} }
   let(:run_command) do
     capture_stdout do
-      described_class.new(command_name: "cells").call(concept: concept)
+      described_class.new(command_name: "cells").call(options)
     end
   end
 

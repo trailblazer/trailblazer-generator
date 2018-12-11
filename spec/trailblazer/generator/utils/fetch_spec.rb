@@ -152,7 +152,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     context "when concept class folder does not exist" do
       it "creates a new folder and return concept" do
         output = capture_stdout do
-          expect(fetch.concept(concept)).to eq "BlogPost"
+          expect(fetch.concept(concept, nil, nil)).to eq "BlogPost"
         end
 
         expect(output[:stdout]).to include "app/concepts/blog_post"
@@ -161,11 +161,11 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
     end
 
     context "when concept class folder already exist" do
-      before { capture_stdout { fetch.concept(concept) } }
+      before { capture_stdout { fetch.concept(concept, nil, nil) } }
 
       it "returns concept whitout creating a new folder " do
         output = capture_stdout do
-          expect(fetch.concept(concept)).to eq "BlogPost"
+          expect(fetch.concept(concept, nil, nil)).to eq "BlogPost"
         end
 
         expect(output[:stdout]).to eq ""

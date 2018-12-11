@@ -8,23 +8,21 @@ module Trailblazer
         # Generate Finder Command
         class Finder < Base
           desc "Generate a Trailblazer Finder"
-          example [
-            "trb generate finder Blog Create",
-            "trb generate finder Blog Create --template=index",
-            "trb generate finder Blog Create --layout=plural"
-          ]
+          example ["Blog Create", "Blog Create --template=index", "Blog Create --layout=plural"]
 
           # Required Arguments
           argument :concept, required: true, desc: ARGUMENT_CONCEPT
           argument :name, required: true, desc: ARGUMENT_NAME
 
           # Optional Arguments
-          option :template, desc: OPTION_TEMPLATE
-          option :layout, default: :singular, desc: OPTION_LAYOUT
-          option :json, desc: OPTION_JSON
-          option :path, desc: OPTION_PATH
-          option :stubs, desc: OPTION_STUBS
-          option :add_type_to_namespace, type: :boolean, desc: OPTION_ADD_TYPE_TO_NAMESPACE
+          option :template,              desc: OPTION_TEMPLATE
+          option :layout,                desc: OPTION_LAYOUT, default: :singular
+          option :json,                  desc: OPTION_JSON
+          option :path,                  desc: OPTION_PATH
+          option :stubs,                 desc: OPTION_STUBS
+          option :add_type_to_namespace, desc: OPTION_ADD_TYPE_TO_NAMESPACE, type: :boolean
+          option :app_dir,               desc: OPTION_APP_DIR
+          option :concepts_folder,       desc: OPTION_CONCEPTS_FOLDER
 
           def call(concept:, **options)
             read_custom_options
