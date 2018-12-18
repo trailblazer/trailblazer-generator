@@ -24,6 +24,7 @@ module Trailblazer
           option :stubs, desc: OPTION_STUBS
 
           def call(concept:, **options)
+            read_custom_options
             run_generator concept, :cell, options, Trailblazer::Generator.file_list.cell
             run_generator concept, :view, options, Trailblazer::Generator.file_list.cell unless options[:view] == "none"
             close_generator

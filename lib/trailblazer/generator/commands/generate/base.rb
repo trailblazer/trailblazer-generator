@@ -33,6 +33,15 @@ module Trailblazer
             @say.close
           end
 
+          def read_custom_options
+            CustomOptions.([{file_path: _file_path}, {}])
+          end
+
+          # @private
+          def _file_path
+            "./trailblazer_generator.yml"
+          end
+
           private
 
           def end_point(signal, concept, options, ctx)

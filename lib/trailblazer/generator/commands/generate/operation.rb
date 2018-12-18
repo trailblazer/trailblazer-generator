@@ -27,6 +27,7 @@ module Trailblazer
           option :add_type_to_namespace, type: :boolean, desc: OPTION_ADD_TYPE_TO_NAMESPACE
 
           def call(concept:, **options)
+            read_custom_options
             run_generator concept, :operation, options
             close_generator
           end

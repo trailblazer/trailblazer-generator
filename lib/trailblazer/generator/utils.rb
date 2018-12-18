@@ -22,6 +22,20 @@ module Trailblazer
         end
       end
 
+      class Hash
+        def self.symbolize(hash)
+          ::Hash[hash.map { |key, value| [key.to_sym, value] }]
+        end
+
+        def self.deep_symbolize(hash)
+          ::Hash[
+            hash.map do |key, value|
+              value.is_a?(::Hash) ? [key.to_sym, symbolize(value)] : [key.to_sym, value]
+            end
+          ]
+        end
+      end
+
       require "trailblazer/generator/utils/fetch"
       require "trailblazer/generator/utils/files"
       require "trailblazer/generator/utils/error"

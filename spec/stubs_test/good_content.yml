@@ -1,0 +1,4 @@
+view: slim
+file_list:
+  operation: [new, create]
+  cell: [custom, custom2]

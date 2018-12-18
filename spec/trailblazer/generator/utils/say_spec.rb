@@ -41,6 +41,22 @@ RSpec.describe Trailblazer::Generator::Utils::Say do
     end
   end
 
+  context "#wrong_file_content" do
+    let(:output) { capture_stdout { say.wrong_file_content } }
+
+    it "shows the file found but wrong content" do
+      expect(output[:stdout]).to include("trailblazer_generator.yml has been found but the content is not an Hash")
+    end
+
+    context "when passing a custom message" do
+      let(:output) { capture_stdout { say.wrong_file_content("message") } }
+
+      it "shows the custom message" do
+        expect(output[:stdout]).to include("trailblazer_generator.yml has been found but message")
+      end
+    end
+  end
+
   context "#close" do
     let(:type) { "cell" }
     let(:output) { capture_stdout { say.close } }
