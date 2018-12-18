@@ -23,6 +23,6 @@ RSpec.describe Trailblazer::Generator::GenerateFile do
   subject(:generate_file) { described_class }
 
   it_behaves_like "the GenerateFile activity", described_class do
-    let(:result) { generate_file.call([{context: context, type: type}, {}]) }
+    let(:result) { generate_file.call([{context: context, type: type, options: {}}, {}]) }
   end
 end

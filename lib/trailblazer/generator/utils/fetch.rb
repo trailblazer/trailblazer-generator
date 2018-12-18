@@ -29,17 +29,19 @@ module Trailblazer
           )
         end
 
-        def self.concept(concept)
-          concept_path = Utils::String.underscore(concept)
-          return concept if Generator::Concept.exists?(concept_path)
+        def self.concept(concept_name, app_dir, concepts_folder)
+          concept_path = Utils::String.underscore(concept_name)
+          concept = Generator::Concept.new(app_dir, concepts_folder)
 
-          Generator::Concept.generate(Generator::Concept.dir(concept_path))
-          concept
+          return concept_name if concept.exists?(concept_path)
+
+          concept.generate(concept.dir(concept_path))
+          concept_name
         end
 
         def self.namespace(options, concept, type)
           add_type_to_namespace = if options[:add_type_to_namespace].nil?
-                                    Trailblazer::Generator.add_type_to_namespace
+                                    Trailblazer::Generator.add_type_to_namespace == "true"
                                   else
                                     options[:add_type_to_namespace]
                                   end

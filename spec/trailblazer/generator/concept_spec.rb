@@ -2,10 +2,20 @@ require "spec_helper"
 require "pathname"
 
 RSpec.describe Trailblazer::Generator::Concept do
-  subject(:concept) { described_class }
+  let(:custom_app_dir) { nil }
+  let(:custom_concept_folder) { nil }
+
+  subject(:concept) { described_class.new(custom_app_dir, custom_concept_folder) }
 
   context "#root" do
     it { expect(concept.root).to eq "app/concepts/" }
+
+    context "with custom values" do
+      let(:custom_app_dir) { "lib" }
+      let(:custom_concept_folder) { "some" }
+
+      it { expect(concept.root).to eq "lib/some/" }
+    end
   end
 
   context "#dir" do

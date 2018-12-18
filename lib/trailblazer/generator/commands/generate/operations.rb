@@ -8,20 +8,19 @@ module Trailblazer
         # Generate Operation Command
         class Operations < Base
           desc "Generate default operations: #{Trailblazer::Generator.file_list.operation}"
-          example [
-            "trb generate operations Blog",
-            "trb generate operations Blog --layout=plural"
-          ]
+          example ["Blog", "Blog --layout=plural"]
 
           # Required Arguments
           argument :concept, required: true, desc: ARGUMENT_CONCEPT
 
           # Optional Arguments
-          option :layout, default: :singular, desc: OPTION_LAYOUT
-          option :json, desc: OPTION_JSON
-          option :path, desc: OPTION_PATH
-          option :stubs, desc: OPTION_STUBS
-          option :add_type_to_namespace, type: :boolean, desc: OPTION_ADD_TYPE_TO_NAMESPACE
+          option :layout,                desc: OPTION_LAYOUT, default: :singular
+          option :json,                  desc: OPTION_JSON
+          option :path,                  desc: OPTION_PATH
+          option :stubs,                 desc: OPTION_STUBS
+          option :add_type_to_namespace, desc: OPTION_ADD_TYPE_TO_NAMESPACE, type: :boolean
+          option :app_dir,               desc: OPTION_APP_DIR
+          option :concepts_folder,       desc: OPTION_CONCEPTS_FOLDER
 
           def call(concept:, **options)
             read_custom_options

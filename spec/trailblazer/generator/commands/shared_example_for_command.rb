@@ -117,6 +117,30 @@ RSpec.shared_examples "a single file generation command" do |desc_class, type, c
     end
   end
 
+  context "able to use --app_dir" do
+    let(:options) { {name: "AppDir", app_dir: "custom"} }
+    let(:file) { Pathname.new("./custom/concepts/shared_example/#{type}/app_dir.rb") }
+
+    it "to generate files in a different folder" do
+      expect(run_command[:stdout]).to include "Starting Generator for Trailblazer #{type.capitalize}"
+      expect(run_command[:stdout]).to include "Create"
+      expect(run_command[:stdout]).to include "custom/concepts/shared_example/#{type}/app_dir.rb"
+      expect(Pathname(file).exist?).to eq true
+    end
+  end
+
+  context "able to use --concepts_folder" do
+    let(:options) { {name: "ConceptsFolder", concepts_folder: "custom"} }
+    let(:file) { Pathname.new("./app/custom/shared_example/#{type}/concepts_folder.rb") }
+
+    it "to generate files in a different folder" do
+      expect(run_command[:stdout]).to include "Starting Generator for Trailblazer #{type.capitalize}"
+      expect(run_command[:stdout]).to include "Create"
+      expect(run_command[:stdout]).to include "app/custom/shared_example/#{type}/concepts_folder.rb"
+      expect(Pathname(file).exist?).to eq true
+    end
+  end
+
   context "when passing the wrong concept format" do
     let(:concept) { "yeah_nah" }
     let(:options) { {name: template.capitalize} }

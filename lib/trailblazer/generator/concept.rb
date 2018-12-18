@@ -3,35 +3,34 @@ module Trailblazer
   class Generator
     # Concept Declarations
     class Concept
-      def self.app_dir
-        Trailblazer::Generator.app_folder
+      def initialize(app_dir = nil, concepts_folder = nil)
+        @app_dir         = app_dir         || Trailblazer::Generator.app_folder
+        @concepts_folder = concepts_folder || Trailblazer::Generator.concepts_folder
       end
 
-      def self.concepts_dir
-        Trailblazer::Generator.app_folder
-      end
+      attr_reader :app_dir, :concepts_folder
 
-      def self.dir(concept)
+      def dir(concept)
         "#{root}#{concept}/"
       end
 
-      def self.root
-        "#{Trailblazer::Generator.app_folder}/#{Trailblazer::Generator.concepts_folder}/"
+      def root
+        "#{app_dir}/#{concepts_folder}/"
       end
 
-      def self.exists?(context)
+      def exists?(context)
         concepts.include?(dir(context))
       end
 
-      def self.concepts
+      def concepts
         Utils::Files.get_files(root)
       end
 
-      def self.generate(destination)
+      def generate(destination)
         Utils::Files.mkdir(destination)
       end
 
-      def self.destination(context)
+      def destination(context)
         # NOTE:
         # when using the default array to generate the files the context.name is a capitalize string so we need to downcase it
         # instead when commands are called from the user can be anything so we use underscore

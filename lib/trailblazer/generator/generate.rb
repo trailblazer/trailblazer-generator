@@ -20,7 +20,7 @@ module Trailblazer
       end
 
       def init(ctx, options:, concept:, type:, **)
-        concept = Utils::Fetch.concept(concept) unless type == :concept
+        concept = Utils::Fetch.concept(concept, options[:app_dir], options[:concepts_folder]) unless type == :concept
         ctx[:context] = Utils::Fetch.context(options, type, concept)
       end
 
@@ -28,8 +28,9 @@ module Trailblazer
         type == :concept
       end
 
-      def generate_concept(ctx, context:, **)
-        ctx[:destination] = destination = Concept.dir(Utils::String.underscore(context.concept))
+      def generate_concept(ctx, context:, options:, **)
+        ctx[:destination] = destination = Concept.new(options[:app_dir], options[:concepts_folder])
+                                                 .dir(Utils::String.underscore(context.concept))
         Utils::Files.mkdir(destination)
       end
 
