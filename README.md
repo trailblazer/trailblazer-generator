@@ -19,7 +19,7 @@ Or install it yourself as:
 
 ## Single file generation
 
-Available commands: `cell`, `contract`, `finder` and `operation`
+Available commands: `cell`, `contract`, `finder`, `operation` and `activity`.
 
 Concept name and class name are required and validated before going ahead with the generation.
 
@@ -97,6 +97,13 @@ allows to change the concepts folder
 Example:
 - `trailblazer g concept Post --concepts_folder=anything` -> will create a `Post` concept inside using anything as concepts folder `app/anything/post`
 
+### `--activity_strategy` (only for `activity` command)
+allows to select which strategy to use.
+Supported strategies: `path`, `fast_track` and `railway`
+
+Example:
+- `trailblazer g activity Post Create --activity_strategy=railway` -> will create an `Activity` in `app/concepts/activity/create.rb` adding `extend Trailblazer::Activity::Railway()`
+
 ### Settings file
 It's possible to override the default options also using a `trailblazer_generator.yml` file saved in the root path of your application.
 
@@ -107,12 +114,14 @@ stubs: anything
 add_type_to_namespace: false
 app_folder: anything
 concepts_folder: anything
+activity_strategy: only_supported_ones (path, fast_track and railway)
 file_list:
   operation: [new, create]
   cell: [custom, custom2]
   contract: []
-  fider: []
+  finder: []
   view: []
+  activity: []
 ```
 
 All the keys needs to be a string instead the nested keys under `file_list` must be an array of string otherwise a warning message will be shown and the file will not be used.

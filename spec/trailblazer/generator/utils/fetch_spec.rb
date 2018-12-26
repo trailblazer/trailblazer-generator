@@ -38,7 +38,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:default_options) do
         {
           concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:default_context) { Trailblazer::Generator::Context.new(default_options) }
@@ -56,7 +57,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -71,7 +73,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: concept, template: "new", path: false, type: type_in_string, name: "SomeName", json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -86,7 +89,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: concept, template: "some_name", path: false, type: type_in_string, name: "SomeName", json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -102,7 +106,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -118,7 +123,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: concept, template: false, path: false, type: type_in_string, name: false, json: false,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -135,7 +141,8 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:custom_options) do
         {
           concept: nil, template: false, path: false, type: type_in_string, name: false, json: json_parsed,
-          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path
+          view: view_in_string, stubs: stubs, namespace: namespace, namespace_path: namespace_path,
+          activity_strategy: false
         }
       end
       let(:custom_context) { Trailblazer::Generator::Context.new(custom_options) }
@@ -185,6 +192,38 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
       let(:add_type_to_namespace?) { false }
 
       it { is_expected.to eq "Blog" }
+    end
+  end
+
+  context "#activity_strategy" do
+    let(:activity_strategy) { %w[path fast_track railway].freeze }
+    let(:activity_strategy_module) { %w[Path FastTrack Railway].freeze }
+    let(:options) { {activity_strategy: activity_strategy} }
+
+    it "returns capitalized strategy" do
+      activity_strategy.each_with_index do |strategy, index|
+        expect(
+          described_class.activity_strategy(strategy)
+        ).to eq activity_strategy_module[index]
+      end
+    end
+
+    context "when passing a unsupported strategy" do
+      it "shows a notice message and uses Path" do
+        output = capture_stdout do
+          activity_strategy = described_class.activity_strategy("random")
+
+          expect(activity_strategy).to eq "Path"
+        end
+
+        expect(output[:stdout]).to include "random is not a supported activity strategy"
+      end
+    end
+
+    context "when option is false" do
+      it "returns false" do
+        expect(described_class.activity_strategy(false)).to eq false
+      end
     end
   end
 end

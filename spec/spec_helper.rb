@@ -53,26 +53,6 @@ module Helpers
   end
 end
 
-# NOTE: uncomment this to troubleshoot tests
-# Trailblazer::Generator::Utils::Error.class_eval do
-#   def source(context)
-#   end
-
-#   def exist(context)
-#   end
-
-#   def write(context)
-#   end
-
-#   def class_name(class_name)
-#   end
-# end
-
-# Trailblazer::Generator::Utils::Menu.class_eval do
-#   def overwrite(destination)
-#   end
-# end
-
 RSpec.configure do |config|
   include Helpers
 

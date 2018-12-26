@@ -11,6 +11,7 @@ module Trailblazer
           example ["Blog Create", "Blog Create --template=index", "Blog Create --layout=plural"]
 
           # Required Arguments
+          argument :concept, required: true, desc: ARGUMENT_CONCEPT
           argument :name, required: true, desc: ARGUMENT_NAME
 
           # Optional Arguments
