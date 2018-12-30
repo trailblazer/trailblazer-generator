@@ -10,11 +10,12 @@ module Trailblazer
     extend Dry::Configurable
 
     # DEFAULT OPTIONS: overridable passing it as option
-    setting :view,                  "erb",   reader: true
-    setting :stubs,                 "stubs", reader: true
-    setting :add_type_to_namespace, "true",  reader: true
+    setting :view,                  "erb",      reader: true
+    setting :stubs,                 "stubs",    reader: true
+    setting :add_type_to_namespace, "true",     reader: true
     setting :app_folder,            "app",      reader: true
     setting :concepts_folder,       "concepts", reader: true
+    setting :activity_strategy,     "path",     reader: true
 
     # SETTINGS: not overridable
     setting :file_list, reader: true do
@@ -23,6 +24,7 @@ module Trailblazer
       setting :contract,  %w[create update].freeze
       setting :finder,    %w[list].freeze
       setting :view,      %w[].freeze
+      setting :activity,  %w[activity].freeze
     end
   end
 end

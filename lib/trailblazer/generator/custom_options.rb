@@ -12,6 +12,7 @@ module Trailblazer
         optional(:add_type_to_namespace).value(:str?)
         optional(:app_dir).value(:str?)
         optional(:concepts_folder).value(:str?)
+        optional(:activity_strategy).value(:str?)
 
         optional(:file_list).schema do
           optional(:operation).value(:array?)
@@ -19,6 +20,7 @@ module Trailblazer
           optional(:contract).value(:array?)
           optional(:finder).value(:array?)
           optional(:view).value(:array?)
+          optional(:activity).value(:array?)
         end
       end
 

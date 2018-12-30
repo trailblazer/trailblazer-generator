@@ -1,0 +1,16 @@
+module <%= namespace %>
+  module <%= name %>
+    extend Trailblazer::Activity::<%= activity_strategy %>()
+
+    module_function
+
+    def my_method(ctx, *)
+     # add your code
+    end
+    <% if activity_strategy == 'Path' %>
+    task method(:my_method)
+    <% else %>
+    step method(:my_method)
+    <% end %>
+  end
+end

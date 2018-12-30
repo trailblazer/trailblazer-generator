@@ -1,0 +1,13 @@
+module <%= namespace %>
+  module <%= name %>
+    extend Trailblazer::Activity::Path()
+
+    module_function
+
+    def my_method(ctx, *)
+     # add your code
+    end
+
+    task method(:my_method)
+  end
+end
