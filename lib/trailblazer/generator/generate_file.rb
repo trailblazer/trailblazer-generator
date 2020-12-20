@@ -1,10 +1,7 @@
 module Trailblazer
   # Trailblazer Gen
   class Generator
-    module GenerateFile
-      extend Trailblazer::Activity::Railway()
-
-      module_function
+    class GenerateFile < Trailblazer::Activity::Railway
 
       def template(ctx, context:, type:, **)
         ctx[:template] = template = {file_name: context.template, path: context.stubs}
@@ -50,12 +47,12 @@ module Trailblazer
         Utils::Files.exist?(destination)
       end
 
-      pass method(:template)
-      pass method(:source_and_destination)
-      step method(:validate_source), Output(:failure) => End(:missing_source)
-      step method(:validate_destination), Output(:failure) => End(:file_already_present)
-      step method(:generate_file)
-      step method(:validate_generation)
+      pass :template
+      pass :source_and_destination
+      step :validate_source, Output(:failure) => End(:missing_source)
+      step :validate_destination, Output(:failure) => End(:file_already_present)
+      step :generate_file
+      step :validate_generation
     end
   end
 end

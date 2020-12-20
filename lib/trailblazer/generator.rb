@@ -1,5 +1,5 @@
 require "hanami/cli"
-require "trailblazer-activity"
+require "trailblazer/activity/dsl/linear"
 require "trailblazer/generator/version"
 
 require "dry-configurable"

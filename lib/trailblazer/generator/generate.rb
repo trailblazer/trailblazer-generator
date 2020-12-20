@@ -1,13 +1,10 @@
 module Trailblazer
   # Trailblazer Gen
   class Generator
-    module Generate
-      extend Trailblazer::Activity::Railway()
+    class Generate < Trailblazer::Activity::Railway
 
       REGEXP_CONCEPT = /^[A-Z][A-Za-z]{1,}(::[A-Z][A-Za-z]{1,})?/.freeze
       REGEXP_NAME = /^[A-Z][A-Za-z]*$/.freeze
-
-      module_function
 
       def validate_concept(_ctx, concept:, **)
         concept.match REGEXP_CONCEPT
@@ -35,16 +32,16 @@ module Trailblazer
       end
 
       # NOTE: why do I have to specifcy Trailblazer::Activity::End here and not in GenerateFile activity??
-      step method(:validate_concept), Output(:failure) => Trailblazer::Activity::End(:wrong_concept_format)
-      step method(:validate_class_name), Output(:failure) => Trailblazer::Activity::End(:wrong_class_name_format)
-      pass method(:init)
-      step method(:generate_concept?), Output(:success) => :generate_concept_step, Output(:failure) => :generate_file
-      step task: GenerateFile, id: :generate_file,
-           GenerateFile.outputs[:success] => "End.success",
-           GenerateFile.outputs[:missing_source] => Trailblazer::Activity::End(:missing_source),
-           GenerateFile.outputs[:file_already_present] => Trailblazer::Activity::End(:file_already_present),
-           GenerateFile.outputs[:failure] => "End.failure"
-      step method(:generate_concept), id: :generate_concept_step, Output(:success) => "End.success"
+      step :validate_concept, Output(:failure) => Trailblazer::Activity::End(:wrong_concept_format)
+      step :validate_class_name, Output(:failure) => Trailblazer::Activity::End(:wrong_class_name_format)
+      pass :init
+      step :generate_concept?, Output(:success) => Id(:generate_concept_step), Output(:failure) => Id(:generate_file)
+      step Subprocess(GenerateFile), id: :generate_file,
+           Output(:success) => End("End.success"),
+           Output(:missing_source) => Trailblazer::Activity::End(:missing_source),
+           Output(:file_already_present) => Trailblazer::Activity::End(:file_already_present),
+           Output(:failure) => End("End.failure")
+      step :generate_concept, id: :generate_concept_step#, Output(:success) => "End.success"
     end
   end
 end
