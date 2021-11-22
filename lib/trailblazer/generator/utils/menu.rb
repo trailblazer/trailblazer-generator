@@ -1,6 +1,6 @@
 module Trailblazer
   # Trailblazer Gen
-  class Generator
+  module Generator
     # Generator commands registry
     module Utils
       # Fetch Options

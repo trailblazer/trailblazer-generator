@@ -3,7 +3,7 @@ require "ostruct"
 # CLI command context
 module Trailblazer
   # Trailblazer Gen
-  class Generator
+  module Generator
     # Context Struct
     class Context < OpenStruct
       def initialize(data)
@@ -18,10 +18,6 @@ module Trailblazer
 
       def with(data)
         self.class.new(to_h.merge(data))
-      end
-
-      def binding
-        super
       end
     end
   end

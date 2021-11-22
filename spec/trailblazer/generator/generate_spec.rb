@@ -28,7 +28,7 @@ RSpec.describe Trailblazer::Generator::Generate do
           capture_stdout do
             signal, (_ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-            expect(signal).to eq described_class.outputs[:success].signal
+            expect(signal).to eq described_class.Output(:success)
           end
         end
       end
@@ -40,7 +40,7 @@ RSpec.describe Trailblazer::Generator::Generate do
           capture_stdout do
             signal, (_ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-            expect(signal).to eq described_class.outputs[:wrong_concept_format].signal
+            expect(signal).to eq described_class.Output(:wrong_concept_format)
           end
         end
       end
@@ -55,7 +55,7 @@ RSpec.describe Trailblazer::Generator::Generate do
           capture_stdout do
             signal, (_ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-            expect(signal).to eq described_class.outputs[:success].signal
+            expect(signal).to eq described_class.Output(:success)
           end
         end
       end
@@ -68,7 +68,7 @@ RSpec.describe Trailblazer::Generator::Generate do
           capture_stdout do
             signal, (_ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-            expect(signal).to eq described_class.outputs[:wrong_class_name_format].signal
+            expect(signal).to eq described_class.Output(:wrong_class_name_format)
           end
         end
       end
@@ -83,7 +83,7 @@ RSpec.describe Trailblazer::Generator::Generate do
       capture_stdout do
         signal, (ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-        expect(signal).to eq described_class.outputs[:success].signal
+        expect(signal).to eq described_class.Output(:success)
         expect(ctx[:destination]).to eq "app/concepts/uluwatu/"
       end
       expect(Dir["./app/concepts/uluwatu/*"].empty?).to eq true
@@ -95,7 +95,7 @@ RSpec.describe Trailblazer::Generator::Generate do
           capture_stdout do
             signal, (ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
 
-            expect(signal).to eq described_class.outputs[:failure].signal
+            expect(signal).to eq described_class.Output(:failure)
             expect(ctx[:destination]).to eq "app/concepts/uluwatu/"
           end
         }.to raise_error SystemExit

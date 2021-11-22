@@ -9,7 +9,7 @@ RSpec.shared_examples "the GenerateFile activity" do |activity|
 
   it "creates a new operation using the create template" do
     capture_stdout do
-      expect(signal).to eq activity.outputs[:success].signal
+      expect(signal).to eq activity.Outputs(:success)
       expect(ctx[:template][:file_name]).to eq Trailblazer::Generator::Utils::String.new(template)
       expect(ctx[:template][:path]).to eq File.join(Dir.pwd, "/lib/trailblazer/generator/stubs")
     end
@@ -22,7 +22,7 @@ RSpec.shared_examples "the GenerateFile activity" do |activity|
 
     it "creates a new operation using the generic template" do
       capture_stdout do
-        expect(signal).to eq activity.outputs[:success].signal
+        expect(signal).to eq activity.Outputs(:success)
         expect(ctx[:template][:file_name]).to eq "generic"
         expect(ctx[:template][:path]).to eq File.join(Dir.pwd, "/lib/trailblazer/generator/stubs")
       end
@@ -37,7 +37,7 @@ RSpec.shared_examples "the GenerateFile activity" do |activity|
 
     it "creates a new operation using the custom stubs and template" do
       capture_stdout do
-        expect(signal).to eq activity.outputs[:success].signal
+        expect(signal).to eq activity.Outputs(:success)
         expect(ctx[:template][:file_name]).to eq "weird_one"
         expect(ctx[:template][:path]).to eq File.join(Dir.pwd, "/spec/trailblazer/../stubs_test")
       end
@@ -50,7 +50,7 @@ RSpec.shared_examples "the GenerateFile activity" do |activity|
 
       it "returns :missing_source end and does not create the file" do
         capture_stdout do
-          expect(signal).to eq activity.outputs[:missing_source].signal
+          expect(signal).to eq activity.Output(:missing_source)
         end
         expect(Pathname(path).exist?).to eq false
       end

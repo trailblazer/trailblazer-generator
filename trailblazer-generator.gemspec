@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["apotonick@gmail.com", "marc@mudsu.com", "emanuele.magliozzi@gmail.com"]
   spec.summary       = "Generator for Trailblazer."
   spec.description   = "Generate Trailblazer files from your command line"
-  spec.homepage      = "http://trailblazer.to"
+  spec.homepage      = "https://trailblazer.to"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
@@ -18,18 +18,15 @@ Gem::Specification.new do |spec|
   spec.bindir        = "bin"
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "dry-configurable"
-  spec.add_dependency "dry-validation"
+  spec.add_dependency "dry-configurable", "~> 0.13.0"
+  spec.add_dependency "dry-validation", "~> 1.7"
   spec.add_dependency "hanami-cli"
   spec.add_dependency "hanami-utils"
-  spec.add_dependency "trailblazer-activity"
+  spec.add_dependency "trailblazer-activity-dsl-linear"
   spec.add_dependency "tty-prompt", "~> 0.15.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec", "~> 3.5"
-  spec.add_development_dependency "rspec-mocks", "~> 3.5"
-  spec.add_development_dependency "rspec_junit_formatter"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "simplecov"

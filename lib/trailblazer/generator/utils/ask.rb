@@ -1,5 +1,5 @@
 module Trailblazer
-  class Generator
+  module Generator
     module Utils
       # Ask if overwrite when file already exists
       class Ask

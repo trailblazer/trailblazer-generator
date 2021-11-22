@@ -2,7 +2,7 @@ require "hanami/utils/string"
 
 module Trailblazer
   # Trailblazer Gen
-  class Generator
+  module Generator
     # Gen commands registry
     module Utils
       # String Utilities

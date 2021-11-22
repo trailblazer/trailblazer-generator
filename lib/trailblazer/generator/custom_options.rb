@@ -2,29 +2,27 @@ require "yaml"
 require "dry-validation"
 
 module Trailblazer
-  class Generator
-    module CustomOptions
-      extend Trailblazer::Activity::Railway()
+  module Generator
+    class CustomOptions < Trailblazer::Activity::Railway
+      class OptionsSchema < Dry::Validation::Contract
+        schema do
+          optional(:view).value(:str?)
+          optional(:stubs).value(:str?)
+          optional(:add_type_to_namespace).value(:str?)
+          optional(:app_dir).value(:str?)
+          optional(:concepts_folder).value(:str?)
+          optional(:activity_strategy).value(:str?)
 
-      OptionsSchema = Dry::Validation.Params do
-        optional(:view).value(:str?)
-        optional(:stubs).value(:str?)
-        optional(:add_type_to_namespace).value(:str?)
-        optional(:app_dir).value(:str?)
-        optional(:concepts_folder).value(:str?)
-        optional(:activity_strategy).value(:str?)
-
-        optional(:file_list).schema do
-          optional(:operation).value(:array?)
-          optional(:cell).value(:array?)
-          optional(:contract).value(:array?)
-          optional(:finder).value(:array?)
-          optional(:view).value(:array?)
-          optional(:activity).value(:array?)
+          optional(:file_list).schema do
+            optional(:operation).value(:array?)
+            optional(:cell).value(:array?)
+            optional(:contract).value(:array?)
+            optional(:finder).value(:array?)
+            optional(:view).value(:array?)
+            optional(:activity).value(:array?)
+          end
         end
       end
-
-      module_function
 
       def file_exists?(ctx, file_path: "./trailblazer_generator.yml", **)
         ctx[:file_path] = file_path
@@ -46,7 +44,8 @@ module Trailblazer
       end
 
       def validate_content(ctx, custom_options:, **)
-        ctx[:errors_messages] = OptionsSchema.call(custom_options).messages(full: true).map { |key, error|
+        schema = OptionsSchema.new
+        ctx[:errors_messages] = schema.call(custom_options).messages(full: true).map { |key, error|
           if key == :file_list
             message = ["file_list: "]
             message << error.map { |_key, value| value }.join(", ")
@@ -77,13 +76,13 @@ module Trailblazer
         end
       end
 
-      pass method(:file_exists?), Output(:failure) => "End.success"
-      step method(:custom_options)
-      step method(:check_file_format)
-      step method(:symbolize_keys)
-      step method(:validate_content)
-      fail method(:warn_user), id: :warn_user
-      pass method(:override_default_options)
+      pass :file_exists?, Output(:failure) => End(:success)
+      step :custom_options
+      step :check_file_format
+      step :symbolize_keys
+      step :validate_content
+      fail :warn_user, id: :warn_user
+      pass :override_default_options
     end
   end
 end

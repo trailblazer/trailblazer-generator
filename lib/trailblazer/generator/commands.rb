@@ -1,6 +1,6 @@
 module Trailblazer
   # Trailblazer Gen
-  class Generator
+  module Generator
     # Register a command to expand Trailblazer-Gen CLI
     def self.register(name, command = nil, aliases: [], &block)
       Commands.register(name, command, aliases: aliases, &block)

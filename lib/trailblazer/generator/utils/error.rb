@@ -1,5 +1,5 @@
 module Trailblazer
-  class Generator
+  module Generator
     module Utils
       # Raise an error for source/exist/write issue
       class Error

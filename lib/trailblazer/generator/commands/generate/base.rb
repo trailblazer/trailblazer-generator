@@ -1,6 +1,6 @@
 module Trailblazer
   # Trailblazer Generator
-  class Generator
+  module Generator
     # Gen commands registry
     module Commands
       # Generate Command
@@ -12,7 +12,7 @@ module Trailblazer
           def initialize(command_name)
             @say = Utils::Say.new
             @error = Utils::Error.new
-            super
+            super(command_name: command_name)
           end
 
           def run_generator(concept, type, options, templates = [nil])

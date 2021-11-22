@@ -10,7 +10,7 @@ RSpec.describe Trailblazer::Generator do
   end
 
   it "has a version number" do
-    expect(generator::VERSION).to eq "0.3.0.pre"
+    expect(generator::VERSION).to eq "0.10.0.pre"
   end
 
   it "default_options" do

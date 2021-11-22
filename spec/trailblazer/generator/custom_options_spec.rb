@@ -5,7 +5,7 @@ RSpec.describe Trailblazer::Generator::CustomOptions do
     it "returns successful" do
       signal, (_ctx, *) = described_class.call([{}, {}])
 
-      expect(signal).to eq described_class.outputs[:success].signal
+      expect(signal).to eq described_class.Output(:success)
     end
   end
 
@@ -16,7 +16,7 @@ RSpec.describe Trailblazer::Generator::CustomOptions do
     it "returns successful and custom_options hash" do
       signal, (ctx, *) = described_class.call([{file_path: file_path}, {}])
 
-      expect(signal).to eq described_class.outputs[:success].signal
+      expect(signal).to eq described_class.Output(:success)
       expect(ctx[:custom_options]).to eq(
         view: "slim",
         file_list: {
@@ -47,7 +47,7 @@ RSpec.describe Trailblazer::Generator::CustomOptions do
         result = capture_stdout do
           signal, (_ctx, *) = described_class.call([{file_path: file_path}, {}])
 
-          expect(signal).to eq described_class.outputs[:failure].signal
+          expect(signal).to eq described_class.Output(:failure)
         end
 
         expect(result[:stdout]).to include "Warning"
@@ -61,7 +61,7 @@ RSpec.describe Trailblazer::Generator::CustomOptions do
         result = capture_stdout do
           signal, (_ctx, *) = described_class.call([{file_path: file_path}, {}])
 
-          expect(signal).to eq described_class.outputs[:failure].signal
+          expect(signal).to eq described_class.Output(:failure)
         end
 
         expect(result[:stdout]).to include "view must be a string, file_list: operation must be an array, cell must be an array"

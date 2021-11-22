@@ -2,7 +2,7 @@ require "tty-prompt"
 
 module Trailblazer
   # Trailblazer Generator
-  class Generator
+  module Generator
     # Generator commands registry
     module Utils
       # Fetch Options

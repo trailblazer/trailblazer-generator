@@ -1,6 +1,6 @@
 module Trailblazer
   # Trailblazer Gen
-  class Generator
+  module Generator
     # Concept Declarations
     class Concept
       def initialize(app_dir = nil, concepts_folder = nil)
@@ -37,7 +37,7 @@ module Trailblazer
         file_name = context.name.is_a?(::String) ? context.name.downcase : context.name.underscore
         # NOTE: need to use include so when --layout=plural is set this is still working
         template  = context.view && context.type.include?("view") ? context.view : "rb"
-        "#{context.path ? context.path + "/" : root}#{context.namespace_path}/#{file_name}.#{template}"
+        "#{context.path ? "#{context.path}/" : root}#{context.namespace_path}/#{file_name}.#{template}"
       end
     end
   end

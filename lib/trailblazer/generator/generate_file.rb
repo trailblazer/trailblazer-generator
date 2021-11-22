@@ -1,11 +1,6 @@
 module Trailblazer
-  # Trailblazer Gen
-  class Generator
-    module GenerateFile
-      extend Trailblazer::Activity::Railway()
-
-      module_function
-
+  module Generator
+    class GenerateFile < Trailblazer::Activity::Railway
       def template(ctx, context:, type:, **)
         ctx[:template] = template = {file_name: context.template, path: context.stubs}
         return unless context.stubs == "stubs"
@@ -15,7 +10,7 @@ module Trailblazer
                                  context.template
                                else
                                  Utils::Say.new.notice(
-                                   "Templete file #{context.template} not found - a generic templete has been used"
+                                   "Template file #{context.template} not found - a generic template has been used"
                                  )
 
                                  "generic"
@@ -50,12 +45,12 @@ module Trailblazer
         Utils::Files.exist?(destination)
       end
 
-      pass method(:template)
-      pass method(:source_and_destination)
-      step method(:validate_source), Output(:failure) => End(:missing_source)
-      step method(:validate_destination), Output(:failure) => End(:file_already_present)
-      step method(:generate_file)
-      step method(:validate_generation)
+      pass :template
+      pass :source_and_destination
+      step :validate_source, Output(:failure) => End(:missing_source)
+      step :validate_destination, Output(:failure) => End(:file_already_present)
+      step :generate_file
+      step :validate_generation
     end
   end
 end

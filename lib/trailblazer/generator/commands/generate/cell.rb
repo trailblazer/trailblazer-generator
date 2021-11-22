@@ -1,6 +1,6 @@
 module Trailblazer
   # Trailblazer Generator
-  class Generator
+  module Generator
     # Generator commands registry
     module Commands
       # Generate Command

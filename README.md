@@ -126,7 +126,7 @@ file_list:
 
 All the keys needs to be a string instead the nested keys under `file_list` must be an array of string otherwise a warning message will be shown and the file will not be used.
 
-The keys under `file_list` are the default template used to create files and are also used to loop through to create multiple files, the cobination of `stubs` and those keys will allow you to set up a new templates set.
+The keys under `file_list` are the default template used to create files and are also used to loop through to create multiple files, the combination of `stubs` and those keys will allow you to set up a new templates set.
 
 ## NOTE
 This is a work in progress.
