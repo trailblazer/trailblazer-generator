@@ -21,13 +21,13 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
   context "#context" do
     let(:concept) { "Blog" }
     let(:concept_path) { Trailblazer::Generator::Utils::String.underscore(concept) }
-    let(:concept_in_string) { Trailblazer::Generator::Utils::String.new(concept) }
+    let(:concept_in_string) { concept }
     let(:type) { :type }
-    let(:type_in_string) { Trailblazer::Generator::Utils::String.new(type) }
-    let(:view_in_string) { Trailblazer::Generator::Utils::String.new(view) }
+    let(:type_in_string) { type.to_s }
+    let(:view_in_string) { view.to_s }
     let(:view) { "erb" }
     let(:stubs) { "stubs" }
-    let(:stubs_in_string) { Trailblazer::Generator::Utils::String.new(stubs) }
+    let(:stubs_in_string) { stubs }
     let(:namespace) { "Blog::Type" }
     let(:namespace_path) { "blog/type" }
 
@@ -51,7 +51,7 @@ RSpec.describe Trailblazer::Generator::Utils::Fetch do
 
     context "when passing layout as plural" do
       let(:options) { {layout: "plural"} }
-      let(:type_in_string) { Trailblazer::Generator::Utils::String.new("#{type}s") }
+      let(:type_in_string) { "#{type}s" }
       let(:namespace) { "Blog::Types" }
       let(:namespace_path) { "blog/types" }
       let(:custom_options) do

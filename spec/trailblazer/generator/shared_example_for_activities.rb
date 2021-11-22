@@ -10,7 +10,7 @@ RSpec.shared_examples "the GenerateFile activity" do |activity|
   it "creates a new operation using the create template" do
     capture_stdout do
       expect(signal).to eq activity.Outputs(:success)
-      expect(ctx[:template][:file_name]).to eq Trailblazer::Generator::Utils::String.new(template)
+      expect(ctx[:template][:file_name]).to eq template.to_s
       expect(ctx[:template][:path]).to eq File.join(Dir.pwd, "/lib/trailblazer/generator/stubs")
     end
     expect(Pathname(path).exist?).to eq true

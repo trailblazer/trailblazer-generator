@@ -21,7 +21,7 @@ module Trailblazer
             # templates is passed for multifile generation commands
             # otherwise execute this ones and not modifing template
             templates.each do |template|
-              options[:name] = Utils::String.new(template).capitalize unless template.nil?
+              options[:name] = Utils::String.capitalize(template) unless template.nil?
               signal, (ctx, *) = generate.call([{options: options, type: type, concept: concept}, {}])
               end_point(signal, concept, options, ctx)
             end
