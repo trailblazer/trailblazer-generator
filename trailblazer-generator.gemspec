@@ -30,8 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "rspec-mocks", "~> 3.5"
   spec.add_development_dependency "rspec_junit_formatter"
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "simplecov"
 
   # NOTE: to use latest hanami-utils we need to have at least ruby 2.3.0
